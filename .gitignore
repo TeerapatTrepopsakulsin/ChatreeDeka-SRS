@@ -1,1 +1,10 @@
-out/
+# Ignore everything
+*
+
+# But don't ignore .tex files
+!*.tex
+
+# Also keep README, LICENSE, Makefile
+!README.md
+!LICENSE
+!Makefile
