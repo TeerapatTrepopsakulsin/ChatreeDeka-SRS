@@ -3,28 +3,150 @@
 
 \section{Stakeholder Analysis}
 \label{section:stakeholder-analysis}
-<TIP: List your stakeholders for your project here/>
+% <TIP: List your stakeholders for your project here/>
 
-Stakeholders are individuals, groups, or entities that
-have an interest, concern, or stake in a particular project, decision,
-organization, or system. These are individuals or groups who can affect or be
-affected by the outcomes of your project.
+% Stakeholders are individuals, groups, or entities that
+% have an interest, concern, or stake in a particular project, decision,
+% organization, or system. These are individuals or groups who can affect or be
+% affected by the outcomes of your project.
+\subsection{Direct Users / End-Users}
+\begin{itemize}
+    \item \textbf{Lawyers and Legal Practitioners:} Require an accurate tool to evaluate civil case winning potential based on facts. Their adoption depends on the simulator's alignment with the Civil and Commercial Code.
+    \item \textbf{Law Students:} Need a realistic, interactive environment to study and practice civil procedure. They are directly affected by the UI complexity and accuracy of the courtroom flow.
+    \item \textbf{Judiciary Trainees and Court Staff:} Need to practice managing civil trials and drafting judgments. They require high-fidelity simulations of actual courtroom environments.
+    \item \textbf{Litigants:} Want to simulate real-world disputes to understand their legal standing before hiring a lawyer. They represent a non-technical user base that relies on simplified legal terminology.
+\end{itemize}
+
+\subsection{External Influencers}
+\begin{itemize}
+    \item \textbf{Lawyers Council of Thailand:} Concerned with maintaining ethical standards and preventing the unauthorized practice of law. Their public stance could heavily influence professional adoption.
+    \item \textbf{Office of the Judiciary / Court Administration:} Govern court procedures and are interested in modernizing legal training. The software's workflows must strictly align with their official administrative and procedural rules.
+\end{itemize}
+
+\subsection{Beneficiaries or Indirect Users}
+\begin{itemize}
+    \item \textbf{Law Firm Clients:} Desire successful and cost-effective resolution of their disputes. Their financial future can be influenced by the lawyer's use of the simulator.
+    \item \textbf{The Justice System:} Aims to reduce court backlogs. Benefited indirectly if the tool helps users realize a case is weak, thereby discouraging frivolous lawsuits from being filed.
+\end{itemize}
 
 
 \section{User Stories and Use Cases}
 \label{section:user-stories-use-cases}
-<TIP: For each stakeholder, write user stories that capture what
-they need from the system: "As a [stakeholder], I want to [action] so that [benefit]."
-For your most important user stories, expand them into use cases.
-A use case is a detailed description of how a system
-interacts with an external entity (such as a user or another system) to
-accomplish a specific goal. Use cases provide a high-level view of the
-functionality of a system and help in capturing and documenting its
-requirements from the perspective of end users.
+% <TIP: For each stakeholder, write user stories that capture what
+% they need from the system: "As a [stakeholder], I want to [action] so that [benefit]."
+% For your most important user stories, expand them into use cases.
+% A use case is a detailed description of how a system
+% interacts with an external entity (such as a user or another system) to
+% accomplish a specific goal. Use cases provide a high-level view of the
+% functionality of a system and help in capturing and documenting its
+% requirements from the perspective of end users.
 
-Make sure to use the
-appropriate type of use case for each scenario (brief, casual, and fully-dressed
-use case). />
+% Make sure to use the
+% appropriate type of use case for each scenario (brief, casual, and fully-dressed
+% use case). />
+\subsection{User Stories}
+
+\subsubsection{Lawyers and Legal Practitioners}
+\begin{itemize}
+    \item As a legal practitioner, I want to run a hybrid simulation against a MARL-trained Defender Agent so that I can stress-test my case arguments against realistic, auto-generated counter-arguments.
+    \item As a legal practitioner, I want the Case Predictor Agent to analyze the completed trial simulation and output a win probability percentage so that I can evaluate case viability before accepting a client.
+    \item As a legal practitioner, I want the system to automatically suggest relevant Supreme Court precedents during the post-trial feedback phase so that I can strengthen my real-world legal strategy.
+\end{itemize}
+
+\subsubsection{Law Students}
+\begin{itemize}
+    \item As a law student, I want to manually control the Prosecutor Agent in a simulated trial so that I can practice my case-building, argumentation, and cross-examination dynamically.
+    \item As a law student, I want to input evidence and conversation dynamically during a live mock trial so that I can learn how new information shifts the trial's direction in real-time.
+    \item As a law student, I want to raise procedural objections against the MARL-trained Defender during the trial so that I can test my knowledge of Thai civil procedure rules.
+\end{itemize}
+
+\subsubsection{Judiciary Trainees and Court Staff}
+\begin{itemize}
+    \item As a judiciary trainee, I want to act as the manual Judge Agent while the AI handles the Prosecutor and Defender roles so that I can practice ruling on procedural objections and managing trial flow.
+    \item As a judiciary trainee, I want to review the post-trial analysis generated by the Case Predictor so that I can compare my manual trial rulings against the system's objective legal evaluation.
+\end{itemize}
+
+\subsubsection{Litigants / General Public}
+\begin{itemize}
+    \item As a litigant, I want plain-language guidance prompts during simulation setup so that I can input my Thai Civil Law dispute details without deciphering complex legal jargon.
+    \item As a litigant, I want the Case Predictor Agent to provide a simplified summary of potential legal outcomes post-simulation so that I can decide if it is worth hiring a lawyer.
+    \item As a litigant, I want the system to suggest alternative dispute resolution (ADR) options based on the simulation results so that I can explore cheaper ways to settle my conflict outside of court.
+\end{itemize}
+
+\subsection{Use Cases}
+
+\subsubsection{Lawyers and Legal Practitioners}
+
+% \textbf{Fully-Dressed Use Case: Evaluate Civil Case Winning Potential} \\
+% \textbf{Primary Actor:} Lawyer / Legal Practitioner \\
+% \textbf{Goal:} To determine the viability and likely outcome of a civil dispute based on the Civil and Commercial Code. \\
+% \textbf{Preconditions:} The user is authenticated and has gathered basic facts and evidence from a prospective client. \\
+% \textbf{Postconditions:} The system generates a detailed probability report with relevant legal precedents. \\
+% \textbf{Main Success Scenario:}
+% \begin{enumerate}
+%     \item The user initiates a ``New Case Evaluation'' from the dashboard.
+%     \item The system prompts the user to select the civil law category (e.g., Breach of Contract, Tort, Property).
+%     \item The user inputs the specific facts, timeline of events, and available evidence using the structured input matrix.
+%     \item The user submits the data for analysis.
+%     \item The system's legal rule engine processes the inputs against the simulated Civil Code database.
+%     \item The system calculates the strength of the case and identifies matching historical precedents.
+%     \item The system displays a comprehensive evaluation report, highlighting strengths, weaknesses, and a percentage-based probability of success.
+% \end{enumerate}
+% \textbf{Extensions:}
+% \begin{itemize}
+%     \item \textit{3a. Incomplete Data:} If the user fails to input mandatory elements, the system flags the missing fields and pauses the evaluation.
+%     \item \textit{5a. No Precedent Match:} If the system cannot find a matching precedent, it outputs an evaluation based strictly on statutory interpretation.
+% \end{itemize}
+
+% \textbf{Casual Use Case: Match Supreme Court Precedents} \\
+% \textbf{Primary Actor:} Lawyer / Legal Practitioner \\
+% \textbf{Scenario:} While reviewing a simulated case evaluation, the lawyer clicks the ``Find Precedents'' button. The system extracts key legal tags (e.g., ``vicarious liability,'' ``agency'') from the user's input and queries the internal database of historical rulings. The system returns a curated list of case summaries that match the current scenario, allowing the lawyer to add these citations directly to their simulated case file.
+
+% \subsubsection{Law Students}
+
+% \textbf{Fully-Dressed Use Case: Submit Legal Pleading for Validation} \\
+% \textbf{Primary Actor:} Law Student \\
+% \textbf{Goal:} To draft a correct initial complaint or statement of defense and receive feedback. \\
+% \textbf{Preconditions:} The student has selected a mock case and is assigned a role (Plaintiff/Defendant). \\
+% \textbf{Postconditions:} The pleading is accepted into the simulation and feedback is logged. \\
+% \textbf{Main Success Scenario:}
+% \begin{enumerate}
+%     \item The student navigates to the ``Document Drafting'' module.
+%     \item The system provides a blank template appropriate for the required pleading.
+%     \item The student types their legal arguments, citing specific sections of the Civil and Commercial Code.
+%     \item The student submits the document to the virtual court.
+%     \item The system scans the document for required structural elements (e.g., jurisdiction, relief sought) and validates the cited laws against the case facts.
+%     \item The system accepts the document and unlocks the next phase of the trial.
+%     \item The system provides a sidebar with automated feedback on the logical structure and statutory accuracy of the pleading.
+% \end{enumerate}
+% \textbf{Extensions:}
+% \begin{itemize}
+%     \item \textit{5a. Fatal Flaw Detected:} If the student cites a completely irrelevant law or misses a mandatory procedural element, the system rejects the filing, highlights the error, and prompts a rewrite.
+% \end{itemize}
+
+% \textbf{Brief Use Case: Raise Procedural Objection} \\
+% \textbf{Primary Actor:} Law Student \\
+% \textbf{Scenario:} During the virtual witness examination phase, the student clicks the ``Objection'' hotkey. The simulation pauses, and the student selects the grounds for objection (e.g., ``Hearsay,'' ``Leading Question'') from a dropdown menu. The virtual judge immediately sustains or overrules the objection based on the predefined rules of the scenario, adjusting the trial score accordingly.
+
+% \subsubsection{Judiciary Trainees and Court Staff}
+
+% \textbf{Casual Use Case: Draft and Issue a Civil Judgment} \\
+% \textbf{Primary Actor:} Judiciary Trainee \\
+% \textbf{Scenario:} After all evidence and arguments have been submitted in a simulated trial, the trainee opens the ``Judgment Drafting'' interface. The system displays a split screen: one side contains the full record of the simulated trial, and the other contains a text editor. As the trainee writes the ruling, the system's auto-suggest feature recommends standard legal phrasing and statutory citations. Once finalized, the trainee clicks ``Issue Judgment,'' which closes the simulation and generates a final PDF for grading.
+
+% \textbf{Brief Use Case: Rule on Evidence Admissibility} \\
+% \textbf{Primary Actor:} Judiciary Trainee \\
+% \textbf{Scenario:} A simulated plaintiff attempts to submit a document into evidence. The system prompts the trainee on the judge's dashboard to review the document. The trainee clicks ``Admit'' or ``Exclude'' based on their assessment of its relevance and authenticity. The system logs the decision and proceeds with the trial.
+
+% \subsubsection{Litigants / General Public}
+
+% \textbf{Casual Use Case: Complete Plain-Language Legal Assessment} \\
+% \textbf{Primary Actor:} Litigant / General Public \\
+% \textbf{Scenario:} A user accesses the public portal and selects ``Evaluate My Problem.'' The system presents a conversational, wizard-style questionnaire. Instead of asking for legal elements, it asks factual questions like ``Did you sign a piece of paper?'' or ``Were you physically injured?'' Once the user finishes the flow, the system translates these answers into a basic legal assessment, explaining their situation in simple terms without using statutory jargon.
+
+% \textbf{Brief Use Case: Generate Mediation Recommendation} \\
+% \textbf{Primary Actor:} Litigant / General Public \\
+% \textbf{Scenario:} After completing a legal assessment, the system calculates that the user's financial claim is very small or the case is highly risky. The system automatically displays a ``Mediation Recommended'' alert, providing a brief explanation of how out-of-court settlement works and offering a link to local dispute resolution resources.
 
 \section{Use Case Diagrams}
 \label{section:use-case-diagrams}
