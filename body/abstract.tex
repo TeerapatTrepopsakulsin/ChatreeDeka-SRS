@@ -2,4 +2,6 @@
 \label{chap:abstract}
 \addcontentsline{toc}{chapter}{\nameref{chap:abstract}}
 
-Put your abstract paragraph here.
+    This is the requirements document for outlining the architecture, features, and evaluation metrics for a Multi-Agent Legal Simulation System tailored to Thai Civil Law. Currently, standard AI legal evaluation relies on static question-and-answer benchmarks, which fail to capture the dynamic, adversarial nature of real courtroom debates. To address this, the proposed system implements a multi-Agent architecture comprising an AI Plaintiff and an AI Defendant that utilizes a Retrieval-Augmented Generation (RAG) database to autonomously debate civil disputes using the Thai Civil and Commercial Code.
+
+    A core component of this system is its automated evaluation pipeline, designed to operate without human intervention. The system utilizes an ``LLM-as-a-Judge'' framework to quantitatively score the realism of generated transcripts based on procedural fidelity, legal grounding, and adversarial density. Furthermore, it features a win-rate calculation module to measure the agents' strategic reasoning against historical Thai Supreme Court (Deka) verdicts. This document details the functional requirements, system boundaries, data processing pipelines, and API integrations necessary for the project. Ultimately, this simulation framework aims to provide legal researchers with a scalable, automated tool to test AI behavioral compliance and strategic reasoning in complex judicial environments.
