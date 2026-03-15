@@ -14,11 +14,39 @@ components and how they interact. />
 
 \section{Software Design}
 \label{section:software-design}
-<TIP: Describe the runtime behavior of your system.
-Include a Sequence Diagram for your most important use cases.
-Focus on scenarios with non-trivial interactions between components.
-If your project involves a novel algorithm,
-describe it here and explain why you designed it this way. />
+% <TIP: Describe the runtime behavior of your system.
+% Include a Sequence Diagram for your most important use cases.
+% Focus on scenarios with non-trivial interactions between components.
+% If your project involves a novel algorithm,
+% describe it here and explain why you designed it this way. />
+\subsection{System Overview}
+
+\textbf{ChatreeDeka} is an AI-driven platform for simulating trials. It features \textbf{4 core agents} trained via Multi-Agent Reinforcement Learning (MARL), with \textbf{hybrid user control}:
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{Judge Agent}: Manual user input (rulings, objections, procedure).
+\item \textbf{Defender Lawyer Agent}: Auto-generates defenses, cross-exams (MARL-trained for realism).
+\item \textbf{Prosecutor Lawyer Agent}: Manual user input (case-building, exams).
+\item \textbf{Case Predictor Agent}: Analyzes full sim outputs (texts, evidence, results) to predict winning probability (\textbf{\%} for each side).
+\end{itemize}
+
+\subsection{Core Workflow}
+
+\begin{enumerate}
+\item Users input case details/evidence $\rightarrow$ simulation launches.
+\item \textbf{Trial}: User manually provides Judge/Prosecutor lines; Defender auto-responds in real-time mock trial.
+\item Users add conversation/evidence dynamically (e.g., ``only auto Defendant, manual others'', or ``all auto'').
+\item \textbf{Post-trial} (user says ``end''), Case Predictor outputs win probability + feedback/pleadings/replay.
+\end{enumerate}
+
+\subsection{Tech Highlights}
+\begin{itemize}[leftmargin=*]
+\item MARL for lawyer agent realism
+\item Thai Civil Code integration
+\item Plain-language UI
+\end{itemize}
+
+
 
 \section{AI and Data Design}
 \label{section:ai-data-design}
@@ -31,12 +59,19 @@ Explain how much data you have or plan to collect,
 and any challenges you anticipate in obtaining it.
 Explain how data is cleaned, transformed, or prepared before use. />
 \subsection{Model Design}
-<TIP: Describe the AI model or external AI service you plan to use.
-Explain why you chose it over alternatives.
-This can connect back to your competitor or literature review in Chapter 2.
-If you are training your own model, describe the architecture and
-training approach. If you are using a third-party model or API,
-describe how it is integrated into your system and any prompt design
-or fine-tuning involved. />
+% <TIP: Describe the AI model or external AI service you plan to use.
+% Explain why you chose it over alternatives.
+% This can connect back to your competitor or literature review in Chapter 2.
+% If you are training your own model, describe the architecture and
+% training approach. If you are using a third-party model or API,
+% describe how it is integrated into your system and any prompt design
+% or fine-tuning involved. />
+Judge:
+Lawyer:
+Defender:
+Case Predictor:
+
 \subsection{Evaluation}
-<TIP: Describe the metrics you plan to use to evaluate your AI model. />
+% <TIP: Describe the metrics you plan to use to evaluate your AI model. />
+Use case outcome prediction accuracy as the primary metric for evaluating our AI model's performance. This metric measures the percentage of cases where the model's predicted outcome (win, lose, settle) matches the actual outcome of the case. We will also analyze precision and recall for each outcome category to understand the model's strengths and weaknesses in predicting different types of case results.
+Also, we'll use the context from the generated text from the fine-tuned lawyer, defender, and judge for the prediction of the case outcome. This will help us evaluate how well the model understands and utilizes the legal context in making its predictions.
