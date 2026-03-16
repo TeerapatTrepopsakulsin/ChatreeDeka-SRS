@@ -8,3 +8,7 @@
 !README.md
 !LICENSE
 !Makefile
+!assets/
+!assets/**
+!body/
+!body/**

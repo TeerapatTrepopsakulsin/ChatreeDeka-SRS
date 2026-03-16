@@ -4,80 +4,170 @@
 \section{Background}
 \label{section:background}
 
-<TIP: 
-A background chapter in a book serves the purpose of providing essential context, information, or history that is relevant
-to the overall understanding of the book's subject matter. This chapter typically appears early in the book and aims to set the
-stage for the reader by offering background details that are crucial for comprehending the main narrative.
-/>
+% <TIP: 
+% A background chapter in a book serves the purpose of providing essential context, information, or history that is relevant
+% to the overall understanding of the book's subject matter. This chapter typically appears early in the book and aims to set the
+% stage for the reader by offering background details that are crucial for comprehending the main narrative.
+% />
+The resolution of civil disputes in Thailand relies heavily on the interpretation and application of the Thai Civil and Commercial Code, alongside historical rulings from the Supreme Court. Traditionally, evaluating the merits of a civil case, formulating a legal strategy, and preparing for trial requires extensive manual effort. Legal professionals must synthesize complex factual matrices, identify applicable statutory provisions, and anticipate opposing arguments. Similarly, for legal education and judiciary training, practical experience is largely constrained to static case studies or resource-intensive moot court exercises, leaving a gap in accessible, real-time procedural practice.
 
 \section{Problem Statement}
 \label{section:problem-statement}
 
-<TIP: 
-A problem statement refers to a clear central issue,
-challenge, or question that the project aims to address or explore. It is a
-declaration that highlights the specific problem the author intends to examine,
-discuss, or solve throughout the course of the project.
-/>
+% <TIP: 
+% A problem statement refers to a clear central issue,
+% challenge, or question that the project aims to address or explore. It is a
+% declaration that highlights the specific problem the author intends to examine,
+% discuss, or solve throughout the course of the project.
+% />
+The current ecosystem for civil case evaluation and trial preparation faces several critical inefficiencies:
+\begin{enumerate}
+    \item \textbf{Time and Availability Constraints:} Reviewing evidence, analyzing legal context, and cross-referencing precedents are highly time-consuming processes. Furthermore, securing the availability of specialized legal professionals or subject-matter experts causes significant scheduling bottlenecks for both law firms and prospective litigants.
+    \item \textbf{High Cost:} The cost of retaining legal counsel for preliminary case evaluation is substantial. This financial overhead often proves prohibitive for individuals or small enterprises involved in minor to moderate civil disputes, limiting access to early legal assessment.
+    \item \textbf{Complexity:} The Civil and Commercial Code is voluminous and densely written. This complexity results in a steep comprehension barrier for laypeople and imposes a heavy cognitive load on legal staff, occasionally leading to gaps in recall or the misapplication of niche provisions during preliminary evaluations.
+    \item \textbf{Lack of Dynamic Risk Assessment:} Stakeholders currently lack a low-risk, interactive environment to practice, stress-test legal arguments, and observe how dynamically introduced evidence might shift the probability of a trial's outcome prior to formal litigation.
+\end{enumerate}
 
 \section{Solution Overview}
 \label{section:solution-overview}
 
-<TIP: 
-A software solution overview provides a high-level and
-concise description of a software product or system. It serves as an
-introduction to the software, offering a glimpse into its key features,
-functionalities, and the problems it aims to address. This overview is often
-presented in documentation, marketing materials, or other communication
-channels to give stakeholders, potential users, or decision-makers a quick
-understanding of what the software does and why it is valuable.
-/>
+% <TIP: 
+% A software solution overview provides a high-level and
+% concise description of a software product or system. It serves as an
+% introduction to the software, offering a glimpse into its key features,
+% functionalities, and the problems it aims to address. This overview is often
+% presented in documentation, marketing materials, or other communication
+% channels to give stakeholders, potential users, or decision-makers a quick
+% understanding of what the software does and why it is valuable.
+% />
+\textbf{ChatreeDeka} is an AI-driven software platform designed to simulate Thai civil courtroom proceedings and evaluate the viability of civil disputes. By leveraging Multi-Agent Reinforcement Learning (MARL), the system provides a highly interactive, conversational environment that strictly aligns with the Thai Civil and Commercial Code. 
+
+The primary objective of the software is to democratize early-stage legal assessment and provide a risk-free training ground for legal professionals and students. It directly addresses the traditional barriers of time, high financial costs, and statutory complexity by allowing users to stress-test legal arguments, introduce dynamic evidence, and receive objective, data-driven predictions on trial outcomes before committing to formal litigation.
 
 \subsection{Features}
 \label{subsection:features}
 
 \begin{enumerate}[leftmargin=80pt]
-    \item Feature Name: Short Description of Feature
-    \item Feature Name: Short Description of Feature
+    \item \textbf{Dynamic Chat-Based Trial:} Simulates the courtroom proceeding in a real-time chat interface where users and AI take turns presenting arguments, examining witnesses, and defending with counter-arguments and cross-examination questions.
+    \item \textbf{Post-Trial Case Predictor:} Analyzes the complete trial transcript, evidence, AI-generated content, and the adjudicating panel's profiles to calculate and display a final win probability percentage for each party.
+    \item \textbf{Real-Time Evidence Injection:} Enables users to introduce new facts or evidence midway through the trial, prompting the AI agents to dynamically adjust their legal strategies.
+    \item \textbf{Hybrid Role Configuration:} Allows users to assign manual or AI control to the Judge, Prosecutor, and Defender roles before starting a simulation.
+    \item \textbf{Procedural Objection System:} Allows users to raise legal objections during the trial (if acting as counsel) or rule on them (if acting as the judge).
+    % \item \textbf{Precedent Matching Engine:} Extracts key legal themes from the completed simulation and suggests relevant past Thai Supreme Court rulings for further study or strategy building.
+    \item \textbf{Plain-Language Case Setup:} Provides a conversational, jargon-free interface for non-legal users to easily input their real-world civil dispute facts.
+    \item \textbf{ADR Routing Recommendation:} Automatically detects low-value or high-risk cases based on the simulation outcome and suggests appropriate mediation or out-of-court settlement options.
 \end{enumerate}
 
 \section{Target User}
 \label{section:target-user}
 
-<TIP: 
-The target user in a software project refers to the specific
-group or demographic of individuals for whom the software is designed and
-developed. Identifying the target user is a crucial step in the software
-development process as it helps the development team tailor the software to
-meet the needs, preferences, and requirements of that particular user group.
-Understanding the characteristics, behaviors, and expectations of the target
-users is essential for creating a user-friendly and effective software solution.
+% <TIP: 
+% The target user in a software project refers to the specific
+% group or demographic of individuals for whom the software is designed and
+% developed. Identifying the target user is a crucial step in the software
+% development process as it helps the development team tailor the software to
+% meet the needs, preferences, and requirements of that particular user group.
+% Understanding the characteristics, behaviors, and expectations of the target
+% users is essential for creating a user-friendly and effective software solution.
 
-Here are some key aspects related to defining the target user in a software project:
+% Here are some key aspects related to defining the target user in a software project:
 
-Demographics: This includes factors such as age, gender,
-occupation, education level, and other demographic characteristics. Different
-age groups or professional backgrounds may have distinct preferences and
-requirements when it comes to software usability.
+% Demographics: This includes factors such as age, gender,
+% occupation, education level, and other demographic characteristics. Different
+% age groups or professional backgrounds may have distinct preferences and
+% requirements when it comes to software usability.
 
-Skill Level: Consideration of the users' technical proficiency and
-familiarity with similar software or technology. The level of technical expertise
-can influence the complexity of the user interface, the need for tutorials or
-documentation, and other user support features.
+% Skill Level: Consideration of the users' technical proficiency and
+% familiarity with similar software or technology. The level of technical expertise
+% can influence the complexity of the user interface, the need for tutorials or
+% documentation, and other user support features.
 
-Industry or Domain: For software solutions designed for specific
-industries or domains, understanding the unique challenges, workflows, and
-terminology within that industry is crucial. Tailoring the software to meet
-industry-specific needs is often necessary.
-/>
+% Industry or Domain: For software solutions designed for specific
+% industries or domains, understanding the unique challenges, workflows, and
+% terminology within that industry is crucial. Tailoring the software to meet
+% industry-specific needs is often necessary.
+% />
+
+\textbf{ChatreeDeka} platform is designed to serve a diverse user base, ranging from highly trained legal professionals to the general public. Understanding the distinct characteristics of these groups is essential for delivering an intuitive, accessible, and effective simulation experience.
+
+\subsection{Lawyers and Legal Practitioners}
+\begin{itemize}
+    \item \textbf{Demographics:} Working professionals, typically aged 25--60, possessing formal law degrees and active legal licenses.
+    \item \textbf{Skill Level:} Highly proficient in Thai Civil Law and court procedures. They have moderate to high technological literacy. They expect advanced functionality, such as stress-testing legal arguments against AI opponents and interpreting detailed win-probability metrics.
+    \item \textbf{Industry/Domain:} Thai Legal Services and Litigation. Their primary goal is risk assessment, case strategy optimization, and matching facts with Supreme Court precedents before officially representing a client in court.
+\end{itemize}
+
+\subsection{Law Students}
+\begin{itemize}
+    \item \textbf{Demographics:} University students and recent graduates, typically aged 18--25, enrolled in undergraduate or graduate law programs.
+    \item \textbf{Skill Level:} High technological literacy, comfortable with chat-based interfaces and dynamic software. Their legal proficiency is beginner to intermediate; they understand legal theory but lack practical courtroom experience. 
+    \item \textbf{Industry/Domain:} Legal Education. They require an interactive, forgiving environment to practice case-building, oral argumentation, and receive automated, educational feedback on their procedural objections and legal documents.
+\end{itemize}
+
+\subsection{Judiciary Trainees and Court Staff}
+\begin{itemize}
+    \item \textbf{Demographics:} Legal professionals who have passed or are preparing for the rigorous Thai judicial examinations, typically aged 25--45.
+    \item \textbf{Skill Level:} Advanced legal knowledge with a hyper-focus on civil procedure, evidence admissibility, and trial management. They require high-fidelity simulations to practice acting as a judge while the system simulates the opposing lawyer roles.
+    \item \textbf{Industry/Domain:} The Thai Justice System and Court Administration. They are focused on maintaining courtroom decorum, ruling on objections accurately, and ensuring trial outcomes align strictly with statutory law.
+\end{itemize}
+
+\subsection{Litigants / General Public}
+\begin{itemize}
+    \item \textbf{Demographics:} A broad, highly diverse demographic encompassing any adult citizen facing a civil dispute (e.g., contract breach, property dispute). Age, education, and occupation vary widely.
+    \item \textbf{Skill Level:} Little to no legal proficiency. Tech literacy varies greatly. They are easily overwhelmed by legal jargon and complex data-entry forms. They require a plain-language, conversational interface to input their case facts.
+    \item \textbf{Industry/Domain:} Personal Dispute Resolution. Their primary goal is to understand their basic legal standing, view simplified case outcome predictions, and explore Alternative Dispute Resolution (ADR) options before incurring actual legal fees.
+\end{itemize}
 
 \section{Terminology}
 \label{section:terminology}
 
-<TIP: 
-Terminology refers to the specific language, jargon, or
-specialized vocabulary used to describe concepts, ideas, or subjects within a
-particular field or domain. The use of terminology is often essential for clarity
-and precision, especially in books that cover technical, scientific, academic, or
-specialized topics.
-/>
+% <TIP: 
+% Terminology refers to the specific language, jargon, or
+% specialized vocabulary used to describe concepts, ideas, or subjects within a
+% particular field or domain. The use of terminology is often essential for clarity
+% and precision, especially in books that cover technical, scientific, academic, or
+% specialized topics.
+% />
+
+Key Terminology includes:
+
+
+Litigant: Party involved in a lawsuit, either initiating or defending a legal claim in simulated proceedings.
+
+Judge: Neutral arbiter who rules on motions, evidence admissibility, and case outcomes based on procedural rules and evidence.
+
+Plaintiff: Party filing the lawsuit, seeking remedy or damages through simulated discovery and trial actions.
+
+Defendant: Party responding to the lawsuit, defending against claims via motions, counterclaims, or evidence presentation.
+
+Motion: Formal request to the judge for a ruling or order, such as motion to dismiss or motion to compel discovery.
+
+Discovery: Pre-trial phase where parties exchange evidence, documents, and witness information under simulation rules.
+
+Summary Judgment: Motion requesting case dismissal without trial if no genuine factual disputes exist.
+
+Sanctions: Penalties imposed by the judge for procedural violations like frivolous filings or discovery abuses.
+
+Court Proceeding: Structured sequence from filing through discovery, motions, trial, and final judgment.
+
+Grant Rate: Probability a judge approves a motion, calibrated from real-world data (e.g., 65% for certain motions).
+
+Multi-Agent Reinforcement Learning (MARL): Framework where agents (litigants, judge) learn optimal policies through shared environment interactions.
+
+Action Space: Set of legal actions available to agents, like filing motions or requesting discovery.
+
+State Space: Current simulation state including case history, evidence, rulings, and agent positions.
+
+Policy ($\pi$): Learned mapping from states to action probabilities, optimized for case wins or cost efficiency.
+
+Reward Function ($R$): Feedback signal rewarding victories (+1), penalizing losses or procedural costs.
+
+Proximal Policy Optimization (PPO): RL algorithm training agents via self-play in competitive scenarios.
+
+Self-Play Training: Agents evolve by competing against prior versions, discovering procedural strategies.
+
+JSON Rules Engine: System enforcing court rules, procedural gates, and action validation.
+
+Stochastic Judge Model: Probabilistic judge decisions based on empirical grant rates and sanction tendencies.
+
+Procedural Gates: Rule checkpoints, e.g., requiring meet-and-confer before motions to compel.
