@@ -6,24 +6,114 @@
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\textwidth]{examples/asana-competitive-landscape.jpg}
-    \caption{Competitive Landscape by Asana}
+    \includegraphics[width=0.5\textwidth]{images/ThanoyAI.png}
+    \caption{ThanoyAI - AI Legal Assistant for Thai Law}
 \end{figure}
 
-<TIP: 
-Refer to an article "How to create a competitive analysis (with
-examples)" by Asana. You can use the Competitor Landscape or
-Competitor Analysis Framework for your project.
-/>
+% <TIP: 
+% Refer to an article "How to create a competitive analysis (with
+% examples)" by Asana. You can use the Competitor Landscape or
+% Competitor Analysis Framework for your project.
+% />
+% https://play.google.com/store/apps/details?id=com.justhemis.justhemis&hl=en
+% https://www.khorn-ai.com/
+
+
+To establish the market positioning of \textbf{ChatreeDeka}, it is essential to analyze existing Thai legal AI solutions. The current landscape is broadly categorized into enterprise research platforms and consumer-facing Q\&A bots. 
+
+On the enterprise side, tools like \textbf{KHORN AI} utilize advanced Retrieval-Augmented Generation (RAG) and Legal Semantic Search to perform ``Deep Research'' on a vast database of Supreme Court rulings and legal texts. These platforms excel at evidence mapping, similarity comparisons, and ensuring high-level data security for law firms. Conversely, platforms such as \textbf{ThanoyAI} cater to the accessible consumer market, providing quick, cited legal answers via popular messaging applications like LINE.
+
+However, existing tools across this spectrum focus predominantly on static research, document retrieval, or brief advisory interactions. This leaves a critical gap in the market for the dynamic, simulation-based training environment offered by ChatreeDeka.
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{} l p{3.8cm} p{3.8cm} p{3.8cm} @{}}
+\toprule
+\textbf{Feature} & \textbf{KHORN AI} & \textbf{ChatreeDeka} & \textbf{ThanoyAI} \\
+\midrule
+\textbf{Core Function} & 
+Deep RAG search \& analysis & 
+MARL-driven trial sim \& hybrid control & 
+Legal Q\&A \& case search \\
+\textbf{Database} & 
+120K+ rulings, 1.4K texts & 
+Thai Civil Code, precedents & 
+LINE-integrated DB \\
+\textbf{Unique Edge} & 
+Semantic intent \& Deep Research & 
+Dynamic trial practice \& objection system & 
+Fast LINE-based search \\
+\textbf{Analysis Depth} & 
+Evidence mapping \& similarity & 
+Agent-based win\% prediction & 
+Cited answers \\
+\textbf{Security} & 
+Private Vector DB, Zero Retention & 
+Role-based access, secure session logs & 
+LINE-platform security \\
+\textbf{Pricing} & 
+Enterprise (TBD) & 
+Freemium (฿99/mo premium) & 
+฿199/mo LINE sub \\
+\bottomrule
+\end{tabular}
+\caption{Competitive landscape: Thai legal AI tools vs. ChatreeDeka.}
+\label{tab:competitor-features}
+\end{table}
+
+\subsection{Pricing Comparison}
+\begin{itemize}
+    \item \textbf{KHORN AI}: Enterprise and B2B pricing models, tailored for large law firms requiring extensive research capabilities.
+    \item \textbf{ChatreeDeka}: Freemium model (basic text simulations free; premium features like full Case Predictor outputs and unlimited MARL agent interactions at ฿99/mo), significantly lowering the barrier to entry.
+    \item \textbf{ThanoyAI}: LINE subscription model (฿199/mo; limited free queries).
+\end{itemize}
+
+\subsection{Market Positioning and Strategy}
+\begin{itemize}
+    \item \textbf{KHORN AI}: Positioned as an enterprise-grade research engine with a strong focus on data security and professional lawyer adoption.
+    \item \textbf{ThanoyAI}: Positioned as an everyday legal assistant, relying on LINE ecosystem dominance and organic SEO for broad public reach.
+    \item \textbf{ChatreeDeka}: Positioned as an interactive ``practice court.'' Marketing efforts will target law student associations and junior practitioners via social media demonstrations of the dynamic MARL agents in action.
+\end{itemize}
+
+\subsection{Customer Edge and Opportunity}
+\begin{itemize}
+    \item \textbf{The Gap:} While current market leaders offer exceptional static research depth and quick Q\&A, they lack real-time adversarial simulation. 
+    \item \textbf{ChatreeDeka's Advantage:} \textbf{Practice $>$ Static Research}. By offering a risk-free environment to dynamically stress-test arguments, ChatreeDeka captures a distinct niche. The initial goal is to capture 20\% of the law student and junior litigator simulation market in Year 1.
+    \item \textbf{Strategic Positioning:} Rather than competing directly as a research database, ChatreeDeka is designed to complement existing platforms like KHORN AI. Legal practitioners can utilize enterprise tools to gather precedents, and subsequently use ChatreeDeka to practice applying those precedents in a simulated trial. This complementary relationship opens avenues for future B2B bundling and strategic partnerships.
+\end{itemize}
 
 \section{Literature Review}
 \label{section:literature-review}
 
-<TIP: Review academic papers or technical reports
-that are relevant to your project.
-For each source, briefly summarize its key findings and
-then explain how it informs your own design or implementation decisions.
-The goal is not just to describe what others have done,
-but to build a justification for your own technical choices.
-For example, if you chose a particular algorithm or architecture,
-cite the work that supports that decision. />
+% <TIP: Review academic papers or technical reports
+% that are relevant to your project.
+% For each source, briefly summarize its key findings and
+% then explain how it informs your own design or implementation decisions.
+% The goal is not just to describe what others have done,
+% but to build a justification for your own technical choices.
+% For example, if you chose a particular algorithm or architecture,
+% cite the work that supports that decision. />
+
+
+This section examines recent multi-agent frameworks in legal AI and explains how their methodologies inform the architectural and technical decisions of the \textbf{ChatreeDeka} platform.
+
+\subsection{Multi-Agent Judicial Simulation (AgentsCourt)}
+He et al. (2024) proposed \textbf{AgentsCourt}, a framework that simulates complete court trials using Large Language Models (LLMs). It employs role-playing agents (judge, plaintiff, defendant) and a retrieval-augmented generation (RAG) system to reconstruct court proceedings and retrieve relevant legal documents. While it achieved significant improvements in legal text generation accuracy, it relies heavily on static historical judgments and prompt engineering, which limits its capacity for dynamic, adversarial reasoning.
+
+\textbf{Influence on System Design:} AgentsCourt validates our architectural choice to divide the simulation into distinct, role-specific entities (Judge, Prosecutor, Defender). However, its limitations in handling dynamic courtroom unpredictability drove our decision to move beyond pure LLM prompting and incorporate a more strategic training methodology for our opponent agents.
+
+\subsection{Adversarial Legal Simulation (LegalSim)}
+Badhe et al. (2025) introduced \textbf{LegalSim}, a framework that treats litigation as a strategic interaction under codified rules. Using a rules-as-code engine and Reinforcement Learning (specifically PPO), the framework trains agents to discover procedural vulnerabilities and optimize legal strategies (e.g., applying settlement pressure or calendar pressure). LegalSim proved that RL-trained agents can uncover emergent, complex legal tactics that simple heuristic or LLM-based policies miss.
+
+\textbf{Influence on System Design:} LegalSim provides the foundational justification for utilizing Multi-Agent Reinforcement Learning (MARL) to train the \textbf{ChatreeDeka} Defender Agent. By optimizing the agent's policy against the rules of the Thai Civil and Commercial Code, we ensure it generates realistic, strategically robust counter-arguments and cross-examinations rather than merely predicting plausible conversational text.
+
+\subsection{Synthesis and System Justification}
+Current research reveals a dichotomy between faithful historical simulation (AgentsCourt) and dynamic strategic optimization (LegalSim). \textbf{ChatreeDeka} is designed to bridge this gap. By combining the conversational realism of LLM role-play with the strategic robustness of MARL, our system provides a highly dynamic trial environment. This synthesized approach ensures that our Case Predictor Agent evaluates win probabilities based on both accurate statutory interpretation and realistic adversarial pressure.
+
+https://arxiv.org/html/2403.02959v3
+https://arxiv.org/html/2510.03405v1
+https://github.com/KevinMercury/tscc-dataset
+https://iarjset.com/wp-content/uploads/2025/04/IARJSET.2025.12321.pdf
+https://www.researchgate.net/publication/388179232_The_Use_of_Chatbots_in_Providing_Free_Legal_Guidance_Benefits_and_Limitations
+https://www.researchgate.net/publication/379875428_Exploring_the_Role_of_AI_in_Modern_Legal_Practice_Opportunities_Challenges_and_Ethical_Implications
