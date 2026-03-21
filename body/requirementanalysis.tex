@@ -75,7 +75,7 @@
 
 \subsection{Use Cases}
 
-\subsubsection{Lawyers and Legal Practitioners}
+This section describes the main use cases of the ChatreeDeka system, including the primary actors, objectives, preconditions, main flow, alternative flow, and postconditions.
 
 % \textbf{Fully-Dressed Use Case: Evaluate Civil Case Winning Potential} \\
 % \textbf{Primary Actor:} Lawyer / Legal Practitioner \\
@@ -147,6 +147,137 @@
 % \textbf{Brief Use Case: Generate Mediation Recommendation} \\
 % \textbf{Primary Actor:} Litigant / General Public \\
 % \textbf{Scenario:} After completing a legal assessment, the system calculates that the user's financial claim is very small or the case is highly risky. The system automatically displays a ``Mediation Recommended'' alert, providing a brief explanation of how out-of-court settlement works and offering a link to local dispute resolution resources.
+\subsubsection{UC-01: Input Case Details and Evidence}
+
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\hline
+\textbf{Use Case ID} & UC-01 \\ \hline
+\textbf{Use Case Name} & Input Case Details and Evidence \\ \hline
+\textbf{Primary Actor} & Law Student, Lawyer / Legal Practitioner, Judiciary Trainee / Court Staff, Litigant / General Public \\ \hline
+\textbf{Description} & The user enters case facts and supporting evidence into the system before starting a simulation. \\ \hline
+\textbf{Preconditions} & The user has opened the case setup page. \\ \hline
+\textbf{Trigger} & The user selects Start New Case. \\ \hline
+\textbf{Main Flow} & 
+1. The user opens the case setup page. \newline
+2. The user enters dispute details. \newline
+3. The user uploads or types evidence and facts. \newline
+4. The system validates the input. \newline
+5. The system stores the case information for simulation. \\ \hline
+\textbf{Alternative Flow} & 
+If required information is missing, the system asks the user to complete it before proceeding. \\ \hline
+\textbf{Postconditions} & 
+A case draft is created and ready for role configuration. \\ \hline
+\end{longtable}
+
+\subsubsection{UC-02: Select Role Configuration}
+
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\hline
+\textbf{Use Case ID} & UC-02 \\ \hline
+\textbf{Use Case Name} & Select Role Configuration \\ \hline
+\textbf{Primary Actor} & Law Student, Lawyer / Legal Practitioner, Judiciary Trainee / Court Staff \\ \hline
+\textbf{Description} & The user selects which courtroom roles are controlled manually and which are controlled by AI before starting the simulation. \\ \hline
+\textbf{Preconditions} & Case details and evidence have already been entered into the system. \\ \hline
+\textbf{Trigger} & The user proceeds from case setup to simulation settings. \\ \hline
+\textbf{Main Flow} & 
+1. The user opens the role configuration page. \newline
+2. The system displays the available roles, such as judge, prosecutor, and defender. \newline
+3. The user chooses whether each role is controlled by a human or AI. \newline
+4. The system checks whether the selected configuration is valid. \newline
+5. The system saves the simulation settings. \\ \hline
+\textbf{Alternative Flow} & 
+If the selected role combination is incomplete or invalid, the system asks the user to revise the configuration. \\ \hline
+\textbf{Postconditions} & 
+The role configuration is saved and the system is ready to start the trial simulation. \\ \hline
+\end{longtable}
+
+\subsubsection{UC-03: Start Trial Simulation}
+
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\hline
+\textbf{Use Case ID} & UC-03 \\ \hline
+\textbf{Use Case Name} & Start Trial Simulation \\ \hline
+\textbf{Primary Actor} & Law Student, Lawyer / Legal Practitioner, Judiciary Trainee / Court Staff, Litigant / General Public \\ \hline
+\textbf{Description} & The user starts the trial simulation using the entered case details and selected role configuration. \\ \hline
+\textbf{Preconditions} & Case details have been entered and role configuration has been completed. \\ \hline
+\textbf{Trigger} & The user clicks the Start Simulation button. \\ \hline
+\textbf{Main Flow} & 
+1. The user selects Start Simulation. \newline
+2. The system loads the case data and role configuration. \newline
+3. The system initializes the trial environment and participating roles. \newline
+4. The simulation begins with the first courtroom interaction. \newline
+5. The system records all interactions in the trial transcript. \\ \hline
+\textbf{Alternative Flow} & 
+If required case data or role settings are missing, the system prevents the simulation from starting and asks the user to complete the missing information. \\ \hline
+\textbf{Postconditions} & 
+The trial simulation session is active and ready for user interaction. \\ \hline
+\end{longtable}
+
+\subsubsection{UC-04: Inject Evidence and Add New Facts}
+
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\hline
+\textbf{Use Case ID} & UC-04 \\ \hline
+\textbf{Use Case Name} & Inject Evidence and Add New Facts \\ \hline
+\textbf{Primary Actor} & Law Student, Lawyer / Legal Practitioner, Litigant / General Public \\ \hline
+\textbf{Description} & The user introduces additional evidence or new facts into the case while the trial simulation is in progress. \\ \hline
+\textbf{Preconditions} & A trial simulation is currently running. \\ \hline
+\textbf{Trigger} & The user selects the option to add evidence or new facts during the simulation. \\ \hline
+\textbf{Main Flow} & 
+1. The user opens the evidence injection interface. \newline
+2. The user enters new facts or uploads supporting evidence. \newline
+3. The system validates and records the newly submitted information. \newline
+4. The system updates the simulation context with the new information. \newline
+5. The AI or manual participants continue the simulation based on the updated case state. \\ \hline
+\textbf{Alternative Flow} & 
+If the submitted information is incomplete, irrelevant, or unreadable, the system asks the user to correct or clarify it before acceptance. \\ \hline
+\textbf{Postconditions} & 
+The case state is updated with the new evidence or facts, and the simulation continues with the revised information. \\ \hline
+\end{longtable}
+
+\subsubsection{UC-05: Raise Procedural Objection}
+
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\hline
+\textbf{Use Case ID} & UC-05 \\ \hline
+\textbf{Use Case Name} & Raise Procedural Objection \\ \hline
+\textbf{Primary Actor} & Law Student, Lawyer / Legal Practitioner \\ \hline
+\textbf{Description} & The user raises a procedural objection during the trial simulation when they detect an improper statement, action, or evidence submission. \\ \hline
+\textbf{Preconditions} & A trial simulation is active and the current stage allows objections. \\ \hline
+\textbf{Trigger} & The user selects the objection option during an active exchange in the simulation. \\ \hline
+\textbf{Main Flow} & 
+1. The user selects Raise Objection. \newline
+2. The system displays the available objection types. \newline
+3. The user chooses the objection type and submits it. \newline
+4. The system records the objection in the trial transcript. \newline
+5. The objection is forwarded to the judge role for consideration or ruling. \\ \hline
+\textbf{Alternative Flow} & 
+If objections are not allowed at the current point in the simulation, the system rejects the request and informs the user. \\ \hline
+\textbf{Postconditions} & 
+The procedural objection is recorded and awaits a ruling or resolution within the simulation. \\ \hline
+\end{longtable}
+
+\subsubsection{UC-06: View Post-Trial Analysis and Feedback}
+
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\hline
+\textbf{Use Case ID} & UC-06 \\ \hline
+\textbf{Use Case Name} & View Post-Trial Analysis and Feedback \\ \hline
+\textbf{Primary Actor} & Law Student, Lawyer / Legal Practitioner, Judiciary Trainee / Court Staff, Litigant / General Public \\ \hline
+\textbf{Description} & The user reviews the analysis generated by the system after the trial simulation, including feedback on legal reasoning, case strength, and possible outcomes. \\ \hline
+\textbf{Preconditions} & The trial simulation has been completed. \\ \hline
+\textbf{Trigger} & The user opens the post-trial results page after finishing the simulation. \\ \hline
+\textbf{Main Flow} & 
+1. The user opens the post-trial analysis page. \newline
+2. The system analyzes the trial transcript, submitted evidence, and simulation outcome. \newline
+3. The system generates feedback and case analysis results. \newline
+4. The system displays the win probability and relevant feedback to the user. \newline
+5. The user reviews the analysis for learning, strategy, or decision-making purposes. \\ \hline
+\textbf{Alternative Flow} & 
+If the analysis cannot be fully generated due to incomplete trial data, the system displays partial feedback and informs the user of the limitation. \\ \hline
+\textbf{Postconditions} & 
+The user receives post-trial insights and can use them for further review, preparation, or decision-making. \\ \hline
+\end{longtable}
 
 \section{Use Case Diagrams}
 \label{section:use-case-diagrams}
