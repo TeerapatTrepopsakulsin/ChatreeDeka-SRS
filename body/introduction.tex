@@ -9,8 +9,7 @@
 % to the overall understanding of the book's subject matter. This chapter typically appears early in the book and aims to set the
 % stage for the reader by offering background details that are crucial for comprehending the main narrative.
 % />
-The resolution of civil disputes in Thailand relies heavily on the interpretation and application of the Thai Civil and Commercial Code, alongside historical rulings from the Supreme Court. Traditionally, evaluating the merits of a civil case, formulating a legal strategy, and preparing for trial requires extensive manual effort. Legal professionals must synthesize complex factual matrices, identify applicable statutory provisions, and anticipate opposing arguments. Similarly, for legal education and judiciary training, practical experience is largely constrained to static case studies or resource-intensive moot court exercises, leaving a gap in accessible, real-time procedural practice.
-
+The resolution of civil disputes in Thailand relies heavily on the interpretation and application of the Thai Civil and Commercial Code, alongside historical rulings from the Supreme Court. Traditionally, evaluating the merits of a civil case, formulating a legal strategy, and preparing for trial requires extensive manual effort. Legal professionals must synthesize complex factual matrices, identify applicable statutory provisions, and anticipate opposing arguments. Similarly, for legal education, practical experience is largely constrained to static case studies or resource-intensive moot court exercises. This leaves a critical gap in accessible, real-time procedural practice, creating a barrier to both dynamic legal training and cost-effective preliminary case evaluation.
 \section{Problem Statement}
 \label{section:problem-statement}
 
@@ -20,12 +19,12 @@ The resolution of civil disputes in Thailand relies heavily on the interpretatio
 % declaration that highlights the specific problem the author intends to examine,
 % discuss, or solve throughout the course of the project.
 % />
-The current ecosystem for civil case evaluation and trial preparation faces several critical inefficiencies:
+The current ecosystem for Thai civil law education, case evaluation, and trial preparation faces several critical inefficiencies:
 \begin{enumerate}
-    \item \textbf{Time and Availability Constraints:} Reviewing evidence, analyzing legal context, and cross-referencing precedents are highly time-consuming processes. Furthermore, securing the availability of specialized legal professionals or subject-matter experts causes significant scheduling bottlenecks for both law firms and prospective litigants.
-    \item \textbf{High Cost:} The cost of retaining legal counsel for preliminary case evaluation is substantial. This financial overhead often proves prohibitive for individuals or small enterprises involved in minor to moderate civil disputes, limiting access to early legal assessment.
-    \item \textbf{Decision-Making Challenges:} Law firms require careful consideration of factors like win probability, resource demands, and client viability before agreeing to take a case. This process demands extensive preliminary analysis under tight timelines, often straining limited staff capacity and delaying case intake.
-    \item \textbf{Lack of Dynamic Risk Assessment:} Stakeholders currently lack a low-risk, interactive environment to practice, stress-test legal arguments, and observe how dynamically introduced evidence might shift the probability of a trial's outcome prior to formal litigation.
+    \item \textbf{The ``Experience Gap'' in Legal Education:} Law students spend years studying static texts, such as the Thai Civil and Commercial Code (TCCC) and historical Supreme Court rulings. However, they lack accessible, dynamic environments to practice adversarial legal reasoning. Organizing traditional moot courts is highly resource-intensive, leaving students without a 24/7, risk-free sandbox to stress-test legal arguments against responsive opponents.
+    \item \textbf{Resource-Intensive Preliminary Case Evaluation:} For law firms, evaluating the viability of a new civil case drains valuable billable hours. Legal professionals must synthesize complex factual matrices, identify applicable statutory provisions, and anticipate adversarial counter-arguments under tight timelines. This makes case intake a high-risk, time-consuming bottleneck that heavily strains limited staff capacity.
+    \item \textbf{High Financial Barriers to Justice:} The cost of retaining human legal counsel merely for a preliminary case assessment is substantial. This financial threshold often proves prohibitive for ordinary citizens or small enterprises involved in minor to moderate civil disputes, causing them to abandon potentially valid legal claims due to the initial cost of evaluation.
+    \item \textbf{Lack of an Automated Adversarial Testing Ground:} Across all stakeholders, there is no automated, low-cost simulation environment. Practitioners and students lack a tool to interactively simulate opposing arguments and observe how dynamically introduced evidence or statutory interpretations might shift the probability of a trial's outcome prior to formal litigation.
 \end{enumerate}
 
 \section{Solution Overview}
@@ -90,18 +89,18 @@ The primary objective of the software is to democratize early-stage legal assess
 
 \textbf{ChatreeDeka} platform is designed to serve a diverse user base, ranging from highly trained legal professionals to the general public. Understanding the distinct characteristics of these groups is essential for delivering an intuitive, accessible, and effective simulation experience.
 
-\subsection{Lawyers and Legal Practitioners}
-\begin{itemize}
-    \item \textbf{Demographics:} Working professionals, typically aged 25--60, possessing formal law degrees and active legal licenses.
-    \item \textbf{Skill Level:} Highly proficient in Thai Civil Law and court procedures. They have moderate to high technological literacy. They expect advanced functionality, such as stress-testing legal arguments against AI opponents and interpreting detailed win-probability metrics.
-    \item \textbf{Industry/Domain:} Thai Legal Services and Litigation. Their primary goal is risk assessment, case strategy optimization, and matching facts with Supreme Court precedents before officially representing a client in court.
-\end{itemize}
-
 \subsection{Law Students}
 \begin{itemize}
     \item \textbf{Demographics:} University students and recent graduates, typically aged 18--25, enrolled in undergraduate or graduate law programs.
     \item \textbf{Skill Level:} High technological literacy, comfortable with chat-based interfaces and dynamic software. Their legal proficiency is beginner to intermediate; they understand legal theory but lack practical courtroom experience. 
     \item \textbf{Industry/Domain:} Legal Education. They require an interactive, forgiving environment to practice case-building, oral argumentation, and receive automated, educational feedback on their procedural objections and legal documents.
+\end{itemize}
+
+\subsection{Lawyers and Legal Practitioners}
+\begin{itemize}
+    \item \textbf{Demographics:} Working professionals, typically aged 25--60, possessing formal law degrees and active legal licenses.
+    \item \textbf{Skill Level:} Highly proficient in Thai Civil Law and court procedures. They have moderate to high technological literacy. They expect advanced functionality, such as stress-testing legal arguments against AI opponents and interpreting detailed win-probability metrics.
+    \item \textbf{Industry/Domain:} Thai Legal Services and Litigation. Their primary goal is risk assessment, case strategy optimization, and matching facts with Supreme Court precedents before officially representing a client in court.
 \end{itemize}
 
 \subsection{Judiciary Trainees and Court Staff}
@@ -139,8 +138,6 @@ Judge: Neutral arbiter who rules on motions, evidence admissibility, and case ou
 Plaintiff: Party filing the lawsuit, seeking remedy or damages through simulated discovery and trial actions.
 
 Defendant: Party responding to the lawsuit, defending against claims via motions, counterclaims, or evidence presentation.
-
-Motion: Formal request to the judge for a ruling or order, such as motion to dismiss or motion to compel discovery.
 
 Discovery: Pre-trial phase where parties exchange evidence, documents, and witness information under simulation rules.
 

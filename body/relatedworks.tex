@@ -54,8 +54,8 @@ Role-based access, secure session logs &
 LINE-platform security \\
 \textbf{Pricing} & 
 Enterprise (TBD) & 
-Freemium (฿99/mo premium) & 
-฿199/mo LINE sub \\
+Freemium (THB 99/mo premium) & 
+THB 199/mo LINE sub \\
 \bottomrule
 \end{tabular}
 \caption{Competitive landscape: Thai legal AI tools vs. ChatreeDeka.}
@@ -65,8 +65,8 @@ Freemium (฿99/mo premium) &
 \subsection{Pricing Comparison}
 \begin{itemize}
     \item \textbf{KHORN AI}: Enterprise and B2B pricing models, tailored for large law firms requiring extensive research capabilities.
-    \item \textbf{ChatreeDeka}: Freemium model (basic text simulations free; premium features like full Case Predictor outputs and unlimited MARL agent interactions at ฿99/mo), significantly lowering the barrier to entry.
-    \item \textbf{ThanoyAI}: LINE subscription model (฿199/mo; limited free queries).
+    \item \textbf{ChatreeDeka}: Freemium model (basic text simulations free; premium features like full Case Predictor outputs and unlimited MARL agent interactions at THB 99/mo), significantly lowering the barrier to entry.
+    \item \textbf{ThanoyAI}: LINE subscription model (THB 199/mo; limited free queries).
 \end{itemize}
 
 \subsection{Market Positioning and Strategy}
@@ -99,21 +99,16 @@ Freemium (฿99/mo premium) &
 This section examines recent multi-agent frameworks in legal AI and explains how their methodologies inform the architectural and technical decisions of the \textbf{ChatreeDeka} platform.
 
 \subsection{Multi-Agent Judicial Simulation (AgentsCourt)}
-He et al. (2024) proposed \textbf{AgentsCourt}, a framework that simulates complete court trials using Large Language Models (LLMs). It employs role-playing agents (judge, plaintiff, defendant) and a retrieval-augmented generation (RAG) system to reconstruct court proceedings and retrieve relevant legal documents. While it achieved significant improvements in legal text generation accuracy, it relies heavily on static historical judgments and prompt engineering, which limits its capacity for dynamic, adversarial reasoning.
+He et al. (2024) proposed \textbf{AgentsCourt} \cite{arxiv_2403_02959}, a framework that simulates complete court trials using Large Language Models (LLMs). It employs role-playing agents (judge, plaintiff, defendant) and a retrieval-augmented generation (RAG) system to reconstruct court proceedings and retrieve relevant legal documents. While it achieved significant improvements in legal text generation accuracy, it relies heavily on static historical judgments and prompt engineering, which limits its capacity for dynamic, adversarial reasoning.
 
 \textbf{Influence on System Design:} AgentsCourt validates our architectural choice to divide the simulation into distinct, role-specific entities (Judge, Prosecutor, Defender). However, its limitations in handling dynamic courtroom unpredictability drove our decision to move beyond pure LLM prompting and incorporate a more strategic training methodology for our opponent agents.
 
 \subsection{Adversarial Legal Simulation (LegalSim)}
-Badhe et al. (2025) introduced \textbf{LegalSim}, a framework that treats litigation as a strategic interaction under codified rules. Using a rules-as-code engine and Reinforcement Learning (specifically PPO), the framework trains agents to discover procedural vulnerabilities and optimize legal strategies (e.g., applying settlement pressure or calendar pressure). LegalSim proved that RL-trained agents can uncover emergent, complex legal tactics that simple heuristic or LLM-based policies miss.
+Badhe et al. (2025) introduced \textbf{LegalSim} \cite{arxiv_2510_03405}, a framework that treats litigation as a strategic interaction under codified rules. Using a rules-as-code engine and Reinforcement Learning (specifically PPO), the framework trains agents to discover procedural vulnerabilities and optimize legal strategies (e.g., applying settlement pressure or calendar pressure). LegalSim proved that RL-trained agents can uncover emergent, complex legal tactics that simple heuristic or LLM-based policies miss.
 
 \textbf{Influence on System Design:} LegalSim provides the foundational justification for utilizing Multi-Agent Reinforcement Learning (MARL) to train the \textbf{ChatreeDeka} Defender Agent. By optimizing the agent's policy against the rules of the Thai Civil and Commercial Code, we ensure it generates realistic, strategically robust counter-arguments and cross-examinations rather than merely predicting plausible conversational text.
 
 \subsection{Synthesis and System Justification}
 Current research reveals a dichotomy between faithful historical simulation (AgentsCourt) and dynamic strategic optimization (LegalSim). \textbf{ChatreeDeka} is designed to bridge this gap. By combining the conversational realism of LLM role-play with the strategic robustness of MARL, our system provides a highly dynamic trial environment. This synthesized approach ensures that our Case Predictor Agent evaluates win probabilities based on both accurate statutory interpretation and realistic adversarial pressure.
 
-https://arxiv.org/html/2403.02959v3
-https://arxiv.org/html/2510.03405v1
-https://github.com/KevinMercury/tscc-dataset
-https://iarjset.com/wp-content/uploads/2025/04/IARJSET.2025.12321.pdf
-https://www.researchgate.net/publication/388179232_The_Use_of_Chatbots_in_Providing_Free_Legal_Guidance_Benefits_and_Limitations
-https://www.researchgate.net/publication/379875428_Exploring_the_Role_of_AI_in_Modern_Legal_Practice_Opportunities_Challenges_and_Ethical_Implications
+Relevant sources are cited here: \cite{arxiv_2403_02959, arxiv_2510_03405, tscc_dataset, iarjset_2025_12321, researchgate_chatbots_free_legal, researchgate_ai_legal_practice}.

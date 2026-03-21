@@ -10,6 +10,4 @@
 !Makefile
 !assets/
 !assets/**
-!body/
-!body/**
 !bibliography.bib
