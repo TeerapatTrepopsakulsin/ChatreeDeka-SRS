@@ -3,14 +3,33 @@
 
 \section{System Architecture Overview}
 \label{section:architecture-overview}
-<TIP: Provide a high-level description of your system's structure.
-Include either a Domain Model (to describe core business concepts
-and their relationships)
-or a Design Class Diagram (to describe how your code is organized
-into classes and packages),
-whichever best communicates your design.
-Accompany your diagram with a short paragraph explaining the key
-components and how they interact. />
+% <TIP: Provide a high-level description of your system's structure.
+% Include either a Domain Model (to describe core business concepts
+% and their relationships)
+% or a Design Class Diagram (to describe how your code is organized
+% into classes and packages),
+% whichever best communicates your design.
+% Accompany your diagram with a short paragraph explaining the key
+% components and how they interact. />
+
+\subsection{Domain Model}
+\label{section:domain-model}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/domain_model.png}
+    \caption{ChatreeDeka Domain Model}
+\end{figure}
+
+ChatreeDeka's domain model is built around the CaseSimulation, which controls the overall flow of the legal dispute simulation. A User starts the process by entering the case facts, evidence, and legal claims. The system then coordinates several Agents to play different courtroom roles, such as the plaintiff, defendant, auditor, and judge. These agents interact by creating and reviewing Arguments, which can be supported by LegalProvisions and Precedents. During the simulation, the auditor checks the reliability of the arguments and records the results in AuditLogs, while the judge reviews the discussion and gives a Verdict. After the simulation is completed, the system generates a PostTrialAnalysis to explain the result, provide feedback, and suggest possible next steps.
+\subsection{Architecture Design}
+\label{section:architecture-design}
+The software architecture follows a layered design, separating the presentation layer (user inputs and case visualization), the application layer (case orchestration and agent coordination), the AI/agent layer (role-specific reasoning and argument generation), and the data/knowledge layer (legal provisions, precedents, and audit logs). This separation keeps responsibilities clear, supports independent evolution of the AI components, and reduces coupling between the user interface and the underlying legal reasoning pipeline.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/software_arch.png}
+    \caption{Layered Software Architecture}
+\end{figure}
 
 \section{Software Design}
 \label{section:software-design}
@@ -45,7 +64,6 @@ components and how they interact. />
 \item Thai Civil Code integration
 \item Plain-language UI
 \end{itemize}
-
 
 
 \section{AI and Data Design}
