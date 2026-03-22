@@ -80,7 +80,8 @@ To ensure the Multi-Agent AI system generates legally accurate and verifiable ar
 \textbf{1. Primary Data Sources and Scope}
 The foundational dataset for this system consists of statutory laws and legal precedents. The primary data is sourced from public domain government databases, specifically the official publications by the Office of the Council of State of Thailand. 
 \begin{itemize}
-    \item \textbf{Statutory Law:} The complete text of the Thai Civil and Commercial Code (TCCC), encompassing all 1,755 sections (e.g., Book I: General Principles, Book II: Obligations, etc.).
+    % TODO 
+    \item \textbf{Statutory Law:} The complete text of the Thai Civil and Commercial Code (TCCC), encompassing all ... sections (e.g., Book I: General Principles, Book II: Obligations, etc.).
     \item \textbf{Case Law (Deka):} A curated subset of historical Thai Supreme Court rulings relevant to the targeted civil disputes (e.g., breach of contract, torts, and family law).
 \end{itemize}
 
@@ -106,22 +107,22 @@ Before the data can be utilized by the agents, it must be transformed from raw t
 The ChatreeDeka platform employs a Heterogeneous Multi-Agent Architecture, utilizing specifically chosen Large Language Models (LLMs) for distinct courtroom roles. This design is strictly constrained by local hardware limitations (a 12GB VRAM limit), necessitating highly optimized, quantized models that load sequentially in a synchronous ``fail-fast'' pipeline. All models are prompted in Thai and constrained to output arguments based exclusively on the Retrieval-Augmented Generation (RAG) database of the Thai Civil and Commercial Code (TCCC).
 
 \subsubsection{1. The Judge: DeepSeek-R1-8B}
-\textbf{Model Choice:} DeepSeek-R1 (8 Billion Parameters). \\
+\noindent\textbf{Model Choice:} DeepSeek-R1 (8 Billion Parameters). \\
 \textbf{Justification:} While standard LLMs output text linearly, legal adjudication requires deep logical deliberation. DeepSeek-R1 was selected specifically for its natively trained Chain-of-Thought (CoT) capabilities. Before rendering a final decision, the model utilizes an internal \texttt{<think>} token phase to weigh the plaintiff's and defender's arguments against the TCCC. \\
 \textbf{Integration \& Prompt Design:} The Judge is prompted to act as a neutral Thai civil court magistrate. The prompt forces the model to read the verified arguments and output its step-by-step logical reasoning (visible to law students for educational purposes) before concluding with a formal judicial verdict and cost allocation. 
 
 \subsubsection{2. The Lawyer (Plaintiff): Llama-3.2-3B-Instruct}
-\textbf{Model Choice:} Meta's Llama-3.2 (3 Billion Parameters, Instruct-Tuned). \\
+\noindent\textbf{Model Choice:} Meta's Llama-3.2 (3 Billion Parameters, Instruct-Tuned). \\
 \textbf{Justification:} As discussed in the \textit{AgentsCourt} literature review, simulating a trial requires autonomous agents to generate procedural text. Llama-3.2-3B was chosen because its highly efficient parameter size allows it to run simultaneously with the Defender agent in VRAM. Despite its small size, its updated architecture handles multilingual context (Thai) exceptionally well when provided with strict RAG context. \\
 \textbf{Integration \& Prompt Design:} The Plaintiff's system prompt restricts it from utilizing its pre-trained general knowledge. It is instructed to adopt an aggressive but legally sound posture, formulating its initial claims and demands based purely on the user's inputted facts and the retrieved TCCC sections.
 
 \subsubsection{3. The Defender: Llama-3.2-3B-Instruct}
-\textbf{Model Choice:} Meta's Llama-3.2 (3 Billion Parameters, Instruct-Tuned). \\
+\noindent\textbf{Model Choice:} Meta's Llama-3.2 (3 Billion Parameters, Instruct-Tuned). \\
 \textbf{Justification:} To ensure a fair and mathematically balanced simulation, the Defender utilizes the exact same foundational model as the Plaintiff. This creates ``Symmetrical Warfare,'' ensuring that neither side has an inherent computational advantage in reasoning depth. \\
 \textbf{Integration \& Prompt Design:} The Defender's prompt is designed adversarially. Upon receiving the Plaintiff's generated argument, the Defender is instructed to identify statutory exceptions, mitigate damages, and construct counter-arguments using the same RAG-retrieved TCCC database. This dynamic push-and-pull is designed to challenge the law student using the platform.
 
 \subsubsection{4. The Case Predictor (Auditor/Verifier): Qwen-2.5-7B-Instruct}
-\textbf{Model Choice:} Alibaba's Qwen-2.5 (7 Billion Parameters, Instruct-Tuned). \\
+\noindent\textbf{Model Choice:} Alibaba's Qwen-2.5 (7 Billion Parameters, Instruct-Tuned). \\
 \textbf{Justification:} Inspired directly by the \textit{Debate-Feedback} framework (Chen et al., 2025) discussed in Chapter 2, the system requires an independent Assistant/Verifier to evaluate the reliability of the agents' debate and prevent hallucinations. Qwen-2.5-7B is currently the state-of-the-art model in its size class for strict instruction-following, logical auditing, and precise JSON data extraction. \\
 \textbf{Integration \& Prompt Design:} This model operates as a background checkpoint and does not ``roleplay.'' Its prompt is strictly analytical: \textit{``You are a Legal Auditor. Read the generated argument and the retrieved TCCC statutes. Does the argument hallucinate or misrepresent the law? Output PASS or FAIL, followed by a one-sentence reason.''} If Qwen outputs FAIL, the system intercepts the argument and forces the Lawyer or Defender to regenerate, ensuring that the Judge only predicts case outcomes based on 100\% verified Thai law.
 
