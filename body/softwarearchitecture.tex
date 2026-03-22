@@ -23,9 +23,9 @@
 ChatreeDeka's domain model is built around the CaseSimulation, which controls the overall flow of the legal dispute simulation. A User starts the process by entering the case facts, evidence, and legal claims. The system then coordinates several Agents to play different courtroom roles, such as the plaintiff, defendant, auditor, and judge. These agents interact by creating and reviewing Arguments, which can be supported by LegalProvisions and Precedents. During the simulation, the auditor checks the reliability of the arguments and records the results in AuditLogs, while the judge reviews the discussion and gives a Verdict. After the simulation is completed, the system generates a PostTrialAnalysis to explain the result, provide feedback, and suggest possible next steps.
 \subsection{Architecture Design}
 \label{section:architecture-design}
-The software architecture follows a layered design, separating the presentation layer (user inputs and case visualization), the application layer (case orchestration and agent coordination), the AI/agent layer (role-specific reasoning and argument generation), and the data/knowledge layer (legal provisions, precedents, and audit logs). This separation keeps responsibilities clear, supports independent evolution of the AI components, and reduces coupling between the user interface and the underlying legal reasoning pipeline.
+The software architecture follows a layered design, separating the presentation layer (user inputs and case visualization), the application layer (case orchestration and agent coordination), the AI/agent layer (role-specific reasoning and argument generation), and the data/knowledge layer (legal provisions, precedents, and audit logs). This separation keeps responsibilities clear, supports independent evolution of the AI components, and reduces coupling between the user interface and the underlying legal reasoning pipeline which shown in the Figure 4.2.
 
-\begin{figure}[htbp]
+\begin{figure}
     \centering
     \includegraphics[width=0.95\textwidth]{images/software_arch.png}
     \caption{Layered Software Architecture}
@@ -70,12 +70,30 @@ The software architecture follows a layered design, separating the presentation 
 \label{section:ai-data-design}
 
 \subsection{Data Sources and Collection}
-<TIP: Describe where your data comes from. Is it collected from users,
-scraped from the web, sourced from a public dataset, or
-provided by an external API?
-Explain how much data you have or plan to collect,
-and any challenges you anticipate in obtaining it.
-Explain how data is cleaned, transformed, or prepared before use. />
+% <TIP: Describe where your data comes from. Is it collected from users,
+% scraped from the web, sourced from a public dataset, or
+% provided by an external API?
+% Explain how much data you have or plan to collect,
+% and any challenges you anticipate in obtaining it.
+% Explain how data is cleaned, transformed, or prepared before use. />
+To ensure the Multi-Agent AI system generates legally accurate and verifiable arguments, the ChatreeDeka platform relies on a highly structured Retrieval-Augmented Generation (RAG) database. The data collection and preparation pipeline is divided into the following phases:
+\textbf{1. Primary Data Sources and Scope}
+The foundational dataset for this system consists of statutory laws and legal precedents. The primary data is sourced from public domain government databases, specifically the official publications by the Office of the Council of State of Thailand. 
+\begin{itemize}
+    \item \textbf{Statutory Law:} The complete text of the Thai Civil and Commercial Code (TCCC), encompassing all 1,755 sections (e.g., Book I: General Principles, Book II: Obligations, etc.).
+    \item \textbf{Case Law (Deka):} A curated subset of historical Thai Supreme Court rulings relevant to the targeted civil disputes (e.g., breach of contract, torts, and family law).
+\end{itemize}
+
+\textbf{2. Anticipated Challenges}
+Handling Thai legal text presents significant Natural Language Processing (NLP) challenges. Unlike English, the Thai language does not use spaces to separate words. Furthermore, Thai legal documents utilize highly formal, archaic, and context-dependent terminology. This creates a dual challenge: accurate word tokenization during the data cleaning phase and ensuring the vector embedding model correctly captures the semantic nuance of legal Thai rather than translating it literally.
+
+\textbf{3. Data Preparation and Cleaning}
+Before the data can be utilized by the agents, it must be transformed from raw text into a machine-readable vector format. The preparation pipeline involves the following steps:
+\begin{itemize}
+    \item \textbf{Extraction and Normalization:} Raw data (often in PDF or HTML formats) is extracted and stripped of formatting artifacts. Standardized headers, footers, and page numbers are removed to prevent noise in the RAG retrieval process.
+    \item \textbf{Semantic Chunking:} Instead of arbitrarily splitting the text by character count, the data is strictly chunked by legal section (e.g., Section 15, Section 19). This ensures that each chunk contains a complete, isolated legal rule, preventing the LLM from conflating overlapping statutes.
+    \item \textbf{Vector Embedding:} The cleaned, sectioned text is processed through a multilingual or Thai-optimized embedding model (such as BGE-m3). The resulting high-dimensional vectors are stored in a Vector Database (e.g., ChromaDB or Pinecone). When a user inputs a case fact, the system queries this database to retrieve the exact TCCC sections required for the agents to construct their debate.
+\end{itemize}
 \subsection{Model Design}
 % <TIP: Describe the AI model or external AI service you plan to use.
 % Explain why you chose it over alternatives.
