@@ -91,5 +91,64 @@ Case Predictor:
 
 \subsection{Evaluation}
 % <TIP: Describe the metrics you plan to use to evaluate your AI model. />
-Use case outcome prediction accuracy as the primary metric for evaluating our AI model's performance. This metric measures the percentage of cases where the model's predicted outcome (win, lose, settle) matches the actual outcome of the case. We will also analyze precision and recall for each outcome category to understand the model's strengths and weaknesses in predicting different types of case results.
-Also, we'll use the context from the generated text from the fine-tuned lawyer, defender, and judge for the prediction of the case outcome. This will help us evaluate how well the model understands and utilizes the legal context in making its predictions.
+
+Evaluation spans two dimensions: the accuracy of the judge agent's rulings and the behavioural quality of the multi-agent simulator. Each metric targets a distinct failure mode and is defined independently so that components can be assessed and iterated separately.
+
+\subsubsection*{Judge Agent: Prediction Accuracy}
+
+The judge agent is evaluated against labelled case outcomes from historical Thai civil court records. Accuracy measures the fraction of cases in which the agent's ruling matches the ground-truth disposition:
+
+\[
+\text{Accuracy} = \frac{\text{Correct Predictions}}{\text{Total Cases}}
+\]
+
+This metric is a necessary but not sufficient condition for deployment readiness. A high accuracy score without adequate procedural compliance (see below) would indicate a system that reaches correct conclusions through legally unsound reasoning paths.
+
+\subsubsection{Simulator: Win Rate}
+
+Win rate quantifies the strategic effectiveness of each lawyer agent across the full case set. Settlements are credited at half-weight to reflect partial success:
+
+\[
+\text{Win Rate} = \frac{\text{Wins} + 0.5 \times \text{Settlements}}{\text{Total Cases}}
+\]
+
+This metric provides a coarse signal for whether MARL training is converging toward competent adversarial behaviour. It is interpreted alongside the two quality metrics below, since a high win rate achieved through procedurally invalid arguments is not considered acceptable performance.
+
+\subsubsection{Simulator: Procedural Compliance}
+
+Procedural compliance measures how consistently agents operate within valid Thai civil procedure. An action is classified as valid if it is permissible at the current stage of the trial under the Civil Procedure Code:
+
+\[
+\text{Procedural Compliance} = \frac{\text{Valid Actions}}{\text{Total Actions}}
+\]
+
+Low compliance indicates that agents are exploiting simulation gaps rather than learning transferable courtroom behaviour, which directly undermines the training value of the platform.
+
+\subsubsection{Simulator: Hallucination Rate}
+
+Legal reasoning quality is assessed by auditing the statutory and precedent citations made by each agent. A claim is flagged as a hallucination when it cannot be traced to an extant provision of the Thai Civil and Commercial Code or to a citable court decision:
+
+\[
+\text{Hallucination Rate} = \frac{\text{Unverifiable Legal Claims}}{\text{Total Legal Claims}}
+\]
+
+Reducing hallucination rate is a prerequisite for the platform to serve as a meaningful legal training tool. Unverifiable citations would mislead users and erode the simulation's value as a proxy for real proceedings.
+
+\bigskip
+\noindent Table~\ref{tab:eval-summary} summarises the four metrics, their target components, and what each is designed to detect.
+
+\begin{table}[htbp]
+\centering
+\caption{Evaluation metric summary}
+\label{tab:eval-summary}
+\begin{tabular}{llp{6cm}}
+\hline
+\textbf{Metric} & \textbf{Component} & \textbf{What a low score indicates} \\
+\hline
+Prediction Accuracy       & Judge Agent  & Incorrect rulings relative to ground truth \\
+Win Rate                  & Lawyer Agents & Ineffective adversarial strategy \\
+Procedural Compliance     & Lawyer Agents & Actions outside valid Thai civil procedure \\
+Hallucination Rate        & Lawyer Agents & Citations to non-existent statutes or precedents \\
+\hline
+\end{tabular}
+\end{table}
