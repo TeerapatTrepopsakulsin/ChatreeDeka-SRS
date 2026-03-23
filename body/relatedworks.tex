@@ -111,7 +111,7 @@ Primary function & Semantic precedent retrieval and statutory search & Statutory
 Interaction model & Single-turn query / ranked document results & Single-turn query / cited answer & Multi-turn, stateful dialogue with persistent trial context \\ \hline
 Agent architecture & Single retrieval agent; no adversarial counterpart & Single generative agent & Multi-agent pipeline: Judge, Prosecutor, Defender, and Case Predictor \\ \hline
 Adversarial reasoning & Not supported & Not supported & Defender Agent generates adversarially-oriented counter-arguments via a policy trained on annotated Deka proceedings (see Section~3.x) \\ \hline
-Knowledge base & {\raise0pt\hbox{$\sim$}}120K Supreme Court rulings; {\raise0pt\hbox{$\sim$}}1,400 statutory texts in private vector DB & LINE-integrated legal database (scope undisclosed) & Thai Civil and Commercial Code; Supreme Court (Deka) rulings via RAG vector store \\ \hline
+Knowledge base & \textasciitilde{}120K Supreme Court rulings; \textasciitilde{}1,400 statutory texts in private vector DB & LINE-integrated legal database (scope undisclosed) & Thai Civil and Commercial Code; Supreme Court (Deka) rulings via RAG vector store \\ \hline
 Session state & Stateless per query & Stateless per query & Full trial context maintained across all turns within a session \\ \hline
 Dynamic evidence handling & Not supported; queries operate against a static corpus & Not supported & Mid-session evidence injection; agents re-evaluate their positions on each new input \\ \hline
 Outcome estimation & Not supported & Not supported & Case Predictor Agent outputs a win-probability score calibrated against historical Deka verdict outcomes \\ \hline
