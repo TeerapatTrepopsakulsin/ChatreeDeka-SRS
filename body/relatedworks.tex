@@ -10,6 +10,12 @@
     \caption{ThanoyAI - AI Legal Assistant for Thai Law}
 \end{figure}
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/KhornAI.png}
+    \caption{KHORN AI - AI Legal Research Platform for Thai Law}
+\end{figure}
+
 % <TIP: 
 % Refer to an article "How to create a competitive analysis (with
 % examples)" by Asana. You can use the Competitor Landscape or
@@ -19,69 +25,127 @@
 % https://www.khorn-ai.com/
 
 
-To establish the market positioning of \textbf{ChatreeDeka}, it is essential to analyze existing Thai legal AI solutions. The current landscape is broadly categorized into enterprise research platforms and consumer-facing Q\&A bots. 
 
-On the enterprise side, tools like \textbf{KHORN AI} utilize advanced Retrieval-Augmented Generation (RAG) and Legal Semantic Search to perform ``Deep Research'' on a vast database of Supreme Court rulings and legal texts. These platforms excel at evidence mapping, similarity comparisons, and ensuring high-level data security for law firms. Conversely, platforms such as \textbf{ThanoyAI} cater to the accessible consumer market, providing quick, cited legal answers via popular messaging applications like LINE.
+This section examines the two existing Thai legal AI platforms most directly relevant to
+ChatreeDeka: KHORN AI and ThanoyAI. The analysis focuses on each platform's technical
+architecture, functional scope, and capability boundaries, as these determine where
+ChatreeDeka's design diverges from prior work.
 
-However, existing tools across this spectrum focus predominantly on static research, document retrieval, or brief advisory interactions. This leaves a critical gap in the market for the dynamic, simulation-based training environment offered by ChatreeDeka.
+\subsubsection{KHORN AI}
 
-\begin{table}[h!]
-\centering
-\renewcommand{\arraystretch}{1.3}
-\begin{tabular}{@{} l p{3.8cm} p{3.8cm} p{3.8cm} @{}}
-\toprule
-\textbf{Feature} & \textbf{KHORN AI} & \textbf{ChatreeDeka} & \textbf{ThanoyAI} \\
-\midrule
-\textbf{Core Function} & 
-Deep RAG search \& analysis & 
-MARL-driven trial sim \& hybrid control & 
-Legal Q\&A \& case search \\
-\textbf{Database} & 
-120K+ rulings, 1.4K texts & 
-Thai Civil Code, precedents & 
-LINE-integrated DB \\
-\textbf{Unique Edge} & 
-Semantic intent \& Deep Research & 
-Dynamic trial practice \& objection system & 
-Fast LINE-based search \\
-\textbf{Analysis Depth} & 
-Evidence mapping \& similarity & 
-Agent-based win\% prediction & 
-Cited answers \\
-\textbf{Security} & 
-Private Vector DB, Zero Retention & 
-Role-based access, secure session logs & 
-LINE-platform security \\
-\textbf{Pricing} & 
-Enterprise (TBD) & 
-Freemium (THB 99/mo premium) & 
-THB 199/mo LINE sub \\
-\bottomrule
-\end{tabular}
-\caption{Competitive landscape: Thai legal AI tools vs. ChatreeDeka.}
-\label{tab:competitor-features}
-\end{table}
+KHORN AI is a legal research platform targeted at law firms and legal practitioners. Its
+core function is a Retrieval-Augmented Generation (RAG) pipeline that indexes approximately
+120,000 Thai Supreme Court rulings and 1,400 statutory texts. The system exposes a semantic
+search interface that accepts natural-language queries and returns ranked, cited passages
+from that corpus.
 
-\subsection{Pricing Comparison}
+Functional capabilities include:
+
 \begin{itemize}
-    \item \textbf{KHORN AI}: Enterprise and B2B pricing models, tailored for large law firms requiring extensive research capabilities.
-    \item \textbf{ChatreeDeka}: Freemium model (basic text simulations free; premium features like full Case Predictor outputs and unlimited MARL agent interactions at THB 99/mo), significantly lowering the barrier to entry.
-    \item \textbf{ThanoyAI}: LINE subscription model (THB 199/mo; limited free queries).
+    \item Semantic intent parsing over a private vector database, enabling cross-document
+    similarity matching between a submitted fact pattern and precedent case holdings.
+
+    \item A ``Deep Research'' mode that performs multi-hop retrieval across statutes,
+    supporting evidence mapping between a legal claim and the relevant code provisions.
+
+    \item Zero-retention data handling via a private vector store, relevant to
+    confidentiality obligations in a law-firm context.
+
+    \item Single-turn query model: the system responds to a posed question from retrieved
+    context but does not maintain session state or model argument progression across
+    multiple turns.
+
+    \item No adversarial counterpart agent: the system does not simulate opposing counsel
+    or generate counter-arguments against a submitted position.
 \end{itemize}
 
-\subsection{Market Positioning and Strategy}
+\subsubsection{ThanoyAI}
+
+ThanoyAI is a legal question-answering service delivered through the LINE messaging
+platform. Its architecture is oriented toward high-throughput, low-latency responses in a
+messaging context. The system processes short factual queries and returns brief answers
+with statutory citations.
+
+Functional capabilities include:
+
 \begin{itemize}
-    \item \textbf{KHORN AI}: Positioned as an enterprise-grade research engine with a strong focus on data security and professional lawyer adoption.
-    \item \textbf{ThanoyAI}: Positioned as an everyday legal assistant, relying on LINE ecosystem dominance and organic SEO for broad public reach.
-    \item \textbf{ChatreeDeka}: Positioned as an interactive ``practice court.'' Marketing efforts will target law student associations and junior practitioners via social media demonstrations of the dynamic MARL agents in action.
+    \item Single-turn query-response pattern within the LINE API, optimised for direct
+    factual answers with cited statutory references.
+
+    \item Narrow functional scope limited to statutory Q\&A; the system does not model
+    case progression, maintain session state, or reason about opposing arguments.
+
+    \item No agent-based reasoning: responses are generated from prompt-completion over
+    a retrieval layer; no component is present that models adversarial legal strategy.
+
+    \item No post-session analysis: the system produces no outcome estimation,
+    win-probability scoring, or post-interaction feedback.
 \end{itemize}
 
-\subsection{Customer Edge and Opportunity}
-\begin{itemize}
-    \item \textbf{The Gap:} While current market leaders offer exceptional static research depth and quick Q\&A, they lack real-time adversarial simulation. 
-    \item \textbf{ChatreeDeka's Advantage:} \textbf{Practice $>$ Static Research}. By offering a risk-free environment to dynamically stress-test arguments, ChatreeDeka captures a distinct niche. The initial goal is to capture 20\% of the law student and junior litigator simulation market in Year 1.
-    \item \textbf{Strategic Positioning:} Rather than competing directly as a research database, ChatreeDeka is designed to complement existing platforms like KHORN AI. Legal practitioners can utilize enterprise tools to gather precedents, and subsequently use ChatreeDeka to practice applying those precedents in a simulated trial. This complementary relationship opens avenues for future B2B bundling and strategic partnerships.
-\end{itemize}
+\subsubsection{Feature and Capability Comparison}
+
+Table~\ref{tab:competitor} compares both platforms against ChatreeDeka across the
+functional and architectural dimensions most relevant to the system requirements defined
+in Chapter~3.
+
+\begin{longtable}{|p{3.2cm}|p{3.8cm}|p{3.8cm}|p{4.2cm}|}
+\caption{Functional and architectural comparison of Thai legal AI platforms.}
+\label{tab:competitor} \\
+\hline
+\textbf{Dimension} & \textbf{KHORN AI} & \textbf{ThanoyAI} & \textbf{ChatreeDeka} \\ \hline
+\endfirsthead
+
+\multicolumn{4}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\textbf{Dimension} & \textbf{KHORN AI} & \textbf{ThanoyAI} & \textbf{ChatreeDeka} \\ \hline
+\endhead
+
+\hline \multicolumn{4}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Primary function & Semantic precedent retrieval and statutory search & Statutory Q\&A via messaging interface & Multi-turn adversarial trial simulation with probabilistic outcome estimation \\ \hline
+Interaction model & Single-turn query / ranked document results & Single-turn query / cited answer & Multi-turn, stateful dialogue with persistent trial context \\ \hline
+Agent architecture & Single retrieval agent; no adversarial counterpart & Single generative agent & Multi-agent pipeline: Judge, Prosecutor, Defender, and Case Predictor \\ \hline
+Adversarial reasoning & Not supported & Not supported & Defender Agent generates adversarially-oriented counter-arguments via a policy trained on annotated Deka proceedings (see Section~3.x) \\ \hline
+Knowledge base & {\raise0pt\hbox{$\sim$}}120K Supreme Court rulings; {\raise0pt\hbox{$\sim$}}1,400 statutory texts in private vector DB & LINE-integrated legal database (scope undisclosed) & Thai Civil and Commercial Code; Supreme Court (Deka) rulings via RAG vector store \\ \hline
+Session state & Stateless per query & Stateless per query & Full trial context maintained across all turns within a session \\ \hline
+Dynamic evidence handling & Not supported; queries operate against a static corpus & Not supported & Mid-session evidence injection; agents re-evaluate their positions on each new input \\ \hline
+Outcome estimation & Not supported & Not supported & Case Predictor Agent outputs a win-probability score calibrated against historical Deka verdict outcomes \\ \hline
+Procedural modelling & Not modelled; retrieval is document-centric & Not modelled & Objection system models Thai civil procedure rules within the session context \\ \hline
+Role configuration & Single user role (researcher / practitioner) & Single user role (inquirer) & Judge, Prosecutor, and Defender each assignable to manual or AI control \\ \hline
+Post-session analysis & Not supported & Not supported & Structured post-trial report with precedent references and ADR routing recommendation \\ \hline
+Deployment interface & Enterprise web application & LINE messaging API & Web application (chat interface) \\ \hline
+\end{longtable}
+
+\subsubsection{Capability Gaps and Design Rationale}
+
+The comparison identifies two structural absences in the current Thai legal AI landscape
+that directly inform ChatreeDeka's architecture.
+
+\textbf{Absence of multi-turn adversarial simulation.} Both platforms operate in a
+stateless, single-turn mode. Neither maintains session context across a trial progression,
+and neither incorporates an agent representing an opposing position. This limits their
+utility for evaluating argument durability under sustained cross-examination or when
+additional evidence is introduced during a proceeding. A practitioner using either
+platform can retrieve relevant precedents but cannot observe how those precedents perform
+when contested.
+
+\textbf{Absence of probabilistic outcome estimation.} Neither platform produces a
+quantitative estimate of trial outcome. The Case Predictor Agent in ChatreeDeka is
+designed to address this by scoring win probability against historical Deka verdicts drawn
+from the RAG knowledge base. The reliability of this estimate depends on the coverage and
+quality of the underlying corpus, which is scoped in Section~3.x.
+
+These gaps reflect deliberate design trade-offs rather than deficiencies: both platforms
+optimise for retrieval depth and response latency within their respective deployment
+contexts. ChatreeDeka is designed to complement document-centric research tools.
+Practitioners can use platforms such as KHORN AI to identify relevant precedents, then
+apply ChatreeDeka to evaluate how those precedents hold up under simulated adversarial
+examination.
 
 \section{Literature Review}
 \label{section:literature-review}
