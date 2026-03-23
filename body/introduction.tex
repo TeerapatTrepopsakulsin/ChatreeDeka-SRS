@@ -128,43 +128,37 @@ The primary objective of the software is to democratize early-stage legal assess
 % specialized topics.
 % />
 
-Key Terminology includes:
 
+\begin{description}
 
-Litigant: Party involved in a lawsuit, either initiating or defending a legal claim in simulated proceedings.
+\item[TCCC (Thai Civil and Commercial Code)] The primary body of laws used to govern the simulated disputes.
 
-Judge: Neutral arbiter who rules on motions, evidence admissibility, and case outcomes based on procedural rules and evidence.
+\item[Matra (Section)] The specific, numbered legal rules within the Thai legal code.
 
-Plaintiff: Party filing the lawsuit, seeking remedy or damages through simulated discovery and trial actions.
+\item[Deka (Dika)] A final ruling by the Supreme Court of Thailand, used in the system as the ``Ground Truth'' to evaluate AI performance.
 
-Defendant: Party responding to the lawsuit, defending against claims via motions, counterclaims, or evidence presentation.
+\item[Plaintiff] The AI agent initiating the lawsuit, seeking remedy or damages.
 
-Discovery: Pre-trial phase where parties exchange evidence, documents, and witness information under simulation rules.
+\item[Defendant] The AI agent responding to the lawsuit, generating counter-arguments and defenses.
 
-Summary Judgment: Motion requesting case dismissal without trial if no genuine factual disputes exist.
+\item[Judge] The neutral arbiter (often modeled stochastically) that rules on motions, evaluates evidence, and determines case outcomes.
 
-Sanctions: Penalties imposed by the judge for procedural violations like frivolous filings or discovery abuses.
+\item[Adversarial Multi-Agent] A system setup where two AI models are programmed with conflicting goals (e.g., prosecution vs.\ defense) to simulate a courtroom battle.
 
-Court Proceeding: Structured sequence from filing through discovery, motions, trial, and final judgment.
+\item[RAG (Retrieval-Augmented Generation)] The architecture that allows AI agents to search and retrieve actual Thai laws from a vector database before formulating their arguments.
 
-Grant Rate: Probability a judge approves a motion, calibrated from real-world data (e.g., 65% for certain motions).
+\item[MARL (Multi-Agent Reinforcement Learning)] The machine learning framework where agents (litigants, judge) learn optimal strategies by interacting within the shared simulation environment.
 
-Multi-Agent Reinforcement Learning (MARL): Framework where agents (litigants, judge) learn optimal policies through shared environment interactions.
+\item[Self-Play Training] A training method where agents improve and discover legal strategies by continuously competing against previous versions of themselves.
 
-Action Space: Set of legal actions available to agents, like filing motions or requesting discovery.
+\item[Action Space] The specific set of legal actions available to the AI agents at any given time (e.g., filing a motion, requesting discovery, raising an objection).
 
-State Space: Current simulation state including case history, evidence, rulings, and agent positions.
+\item[Policy ($\pi$)] The AI's learned strategy---essentially how it maps the current state of the trial to its next chosen legal action to maximize its chance of winning.
 
-Policy ($\pi$): Learned mapping from states to action probabilities, optimized for case wins or cost efficiency.
+\item[Reward Function ($R$)] The feedback signal used to train the AI, usually rewarding victories (+1) while penalizing losses or procedural errors.
 
-Reward Function ($R$): Feedback signal rewarding victories (+1), penalizing losses or procedural costs.
+\item[Stochastic Judge Model] A probabilistic model used for the Judge agent, designed to make decisions based on real-world empirical grant rates rather than hardcoded logic.
 
-Proximal Policy Optimization (PPO): RL algorithm training agents via self-play in competitive scenarios.
+\item[Hallucination] When the AI incorrectly fabricates a Thai law section, fact, or precedent that does not actually exist in the provided legal database.
 
-Self-Play Training: Agents evolve by competing against prior versions, discovering procedural strategies.
-
-JSON Rules Engine: System enforcing court rules, procedural gates, and action validation.
-
-Stochastic Judge Model: Probabilistic judge decisions based on empirical grant rates and sanction tendencies.
-
-Procedural Gates: Rule checkpoints, e.g., requiring meet-and-confer before motions to compel.
+\end{description}
