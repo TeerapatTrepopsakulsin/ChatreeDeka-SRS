@@ -1,88 +1,88 @@
-\input{common/onetextpage.tex}
-\newcounter{nappendix}
-\renewcommand{\thenappendix}{\Alph{nappendix}}
-\newcommand{\newappendix}[1]{%
-    \refstepcounter{nappendix}
-    \onetextpage{Appendix \thenappendix}
-    \chapter*{Appendix \thenappendix: #1}
-    \label{appendix:\thenappendix}
-    \addcontentsline{toc}{chapter}{Appendix \thenappendix: #1}
-}
+% \input{common/onetextpage.tex}
+% \newcounter{nappendix}
+% \renewcommand{\thenappendix}{\Alph{nappendix}}
+% \newcommand{\newappendix}[1]{%
+%     \refstepcounter{nappendix}
+%     \onetextpage{Appendix \thenappendix}
+%     \chapter*{Appendix \thenappendix: #1}
+%     \label{appendix:\thenappendix}
+%     \addcontentsline{toc}{chapter}{Appendix \thenappendix: #1}
+% }
 
-%% Edit past this comment line.
+% %% Edit past this comment line.
 
-\newappendix{Glossary of Terms}
+% \newappendix{Glossary of Terms}
 
-\begin{tabular}{p{0.25\textwidth} p{0.7\textwidth}}
-\textbf{Term} & \textbf{Definition} \\
-TCCC & Thai Civil and Commercial Code; the primary set of laws used in this simulation. \\
-Matra (Section) & The specific numbered legal rules within the Thai code (e.g., Section 420 for Tort). \\
-RAG & Retrieval-Augmented Generation; the system architecture that allows AI agents to ``look up'' Thai laws before generating a response. \\
-Adversarial Multi-Agent & A setup where two AI models (Plaintiff and Defendant) are programmed with conflicting goals to simulate a courtroom battle. \\
-Deka (Dika) & A final ruling by the Supreme Court of Thailand, used in this project as the ``Ground Truth'' for accuracy. \\
-Hallucination & When the AI generates a Thai law section or fact that does not exist in the provided database. \\
-\end{tabular}
+% \begin{tabular}{p{0.25\textwidth} p{0.7\textwidth}}
+% \textbf{Term} & \textbf{Definition} \\
+% TCCC & Thai Civil and Commercial Code; the primary set of laws used in this simulation. \\
+% Matra (Section) & The specific numbered legal rules within the Thai code (e.g., Section 420 for Tort). \\
+% RAG & Retrieval-Augmented Generation; the system architecture that allows AI agents to ``look up'' Thai laws before generating a response. \\
+% Adversarial Multi-Agent & A setup where two AI models (Plaintiff and Defendant) are programmed with conflicting goals to simulate a courtroom battle. \\
+% Deka (Dika) & A final ruling by the Supreme Court of Thailand, used in this project as the ``Ground Truth'' for accuracy. \\
+% Hallucination & When the AI generates a Thai law section or fact that does not exist in the provided database. \\
+% \end{tabular}
 
-\newappendix{Agent Persona Prompts (System Instructions)}
+% \newappendix{Agent Persona Prompts (System Instructions)}
 
-To ensure realism, the following system prompts are used to define the behavior of the AI agents:
+% To ensure realism, the following system prompts are used to define the behavior of the AI agents:
 
-\section*{B.1: Plaintiff Agent Instruction}
+% \section*{B.1: Plaintiff Agent Instruction}
 
-\begin{quote}
-``You are a senior Thai litigator representing the Plaintiff. Your goal is to establish liability and demand full damages. You must: (1) Use formal Thai legal language; (2) Strictly cite TCCC Sections; (3) Proactively address and dismantle the Defendant's likely arguments.''
-\end{quote}
+% \begin{quote}
+% ``You are a senior Thai litigator representing the Plaintiff. Your goal is to establish liability and demand full damages. You must: (1) Use formal Thai legal language; (2) Strictly cite TCCC Sections; (3) Proactively address and dismantle the Defendant's likely arguments.''
+% \end{quote}
 
-\section*{B.2: Defendant Agent Instruction}
+% \section*{B.2: Defendant Agent Instruction}
 
-\begin{quote}
-``You are a Thai defense attorney. Your goal is to prove that your client is not liable or to minimize the damages. You must: (1) Look for procedural flaws in the Plaintiff's claim; (2) Cite conflicting Sections or exceptions in the TCCC; (3) Maintain a professional, firm tone.''
-\end{quote}
+% \begin{quote}
+% ``You are a Thai defense attorney. Your goal is to prove that your client is not liable or to minimize the damages. You must: (1) Look for procedural flaws in the Plaintiff's claim; (2) Cite conflicting Sections or exceptions in the TCCC; (3) Maintain a professional, firm tone.''
+% \end{quote}
 
-\section*{B.3: Judge (Evaluator) Instruction}
+% \section*{B.3: Judge (Evaluator) Instruction}
 
-\begin{quote}
-``You are an impartial Legal Evaluator. Review the transcript for: (1) Legal Accuracy (Did they cite real Sections?); (2) Professionalism; and (3) Strategic Rebuttal. Provide a score from 1--5 for each category.''
-\end{quote}
+% \begin{quote}
+% ``You are an impartial Legal Evaluator. Review the transcript for: (1) Legal Accuracy (Did they cite real Sections?); (2) Professionalism; and (3) Strategic Rebuttal. Provide a score from 1--5 for each category.''
+% \end{quote}
 
-\newappendix{Data Schema \& Technical Logic}
+% \newappendix{Data Schema \& Technical Logic}
 
-\section*{C.1: Case Data Format (JSON)}
+% \section*{C.1: Case Data Format (JSON)}
 
-The system processes legal cases using the following structured format:
+% The system processes legal cases using the following structured format:
 
-\begin{verbatim}
-{
-  "case_id": "CIVIL-2026-001",
-  "domain": "Breach of Contract",
-  "applicable_law": ["Section 213", "Section 387"],
-  "facts": {
-    "plaintiff_evidence": "Evidence of payment and non-delivery of goods.",
-    "defendant_evidence": "Force Majeure due to extreme weather conditions."
-  },
-  "ground_truth_verdict": "Plaintiff Wins (Partial Damages)"
-}
-\end{verbatim}
+% \begin{verbatim}
+% {
+%   "case_id": "CIVIL-2026-001",
+%   "domain": "Breach of Contract",
+%   "applicable_law": ["Section 213", "Section 387"],
+%   "facts": {
+%     "plaintiff_evidence": "Evidence of payment and non-delivery of goods.",
+%     "defendant_evidence": "Force Majeure due to extreme weather conditions."
+%   },
+%   "ground_truth_verdict": "Plaintiff Wins (Partial Damages)"
+% }
+% \end{verbatim}
 
-\section*{C.2: Simulation Workflow}
+% \section*{C.2: Simulation Workflow}
 
-The system follows a four-step execution loop:
+% The system follows a four-step execution loop:
 
-\begin{enumerate}
-    \item Selection: User picks a Deka case or enters facts.
-    \item Retrieval: The RAG system queries the Vector DB for matching TCCC Sections.
-    \item Debate: Agents exchange turns (Opening $\rightarrow$ Rebuttal $\rightarrow$ Closing).
-    \item Evaluation: The Judge AI compares the outcome against the actual Supreme Court verdict.
-\end{enumerate}
+% \begin{enumerate}
+%     \item Selection: User picks a Deka case or enters facts.
+%     \item Retrieval: The RAG system queries the Vector DB for matching TCCC Sections.
+%     \item Debate: Agents exchange turns (Opening $\rightarrow$ Rebuttal $\rightarrow$ Closing).
+%     \item Evaluation: The Judge AI compares the outcome against the actual Supreme Court verdict.
+% \end{enumerate}
 
-\newappendix{Software Tools \& Libraries}
+% \newappendix{Software Tools \& Libraries}
 
-\begin{itemize}
-    \item Core LLM: ...
-    \item Thai NLP: PyThaiNLP (for segmenting Thai legal text).
-    \item Vector Database: ... (storing the Thai Civil and Commercial Code).
-    \item Framework: .... (managing the RAG pipeline).
-    \item Datasets: Thai-Law-Dataset (PyThaiNLP) and NitiBench.
-\end{itemize}
+% \begin{itemize}
+%     \item Core LLM: ...
+%     \item Thai NLP: PyThaiNLP (for segmenting Thai legal text).
+%     \item Vector Database: ... (storing the Thai Civil and Commercial Code).
+%     \item Framework: .... (managing the RAG pipeline).
+%     \item Datasets: Thai-Law-Dataset (PyThaiNLP) and NitiBench.
+% \end{itemize}
 
-(Everything in here is a placeholder. We will fill in the actual tools and libraries we use in the final version of the SRS document.)
+% (Everything in here is a placeholder. We will fill in the actual tools and libraries we use in the final version of the SRS document.)
