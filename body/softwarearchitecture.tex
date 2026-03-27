@@ -61,12 +61,14 @@ The software architecture follows a layered design, separating the presentation 
 
 Figure~\ref{fig:core-workflow-sequence} illustrates the sequence of interactions for Use Case 1, Use Case 2, and Use Case 3 within the core workflow of the ChatreeDeka system.
 
-\begin{figure}[htbp]
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.95\textwidth]{../assets/images/sequence_diagram.png}
     \caption{Sequence diagram for Use Case 1, Use Case 2, and Use Case 3 (Court Simulation Workflow)}
     \label{fig:core-workflow-sequence}
 \end{figure}
+
+\FloatBarrier
 
 \subsection{Tech Highlights}
 \begin{itemize}[leftmargin=*]
@@ -91,7 +93,7 @@ To ensure the Multi-Agent AI system generates legally accurate and verifiable ar
 The foundational dataset for this system consists of statutory laws and legal precedents. The primary data is sourced from public domain government databases, specifically the official publications by the Office of the Council of State of Thailand. 
 \begin{itemize}
     % TODO 
-    \item \textbf{Statutory Law:} The complete text of the Thai Civil and Commercial Code (TCCC), encompassing all ... sections (e.g., Book I: General Principles, Book II: Obligations, etc.).
+    \item \textbf{Statutory Law:} The complete text of the Thai Civil and Commercial Code (TCCC), encompassing all sections (e.g., Book I: General Principles, Book II: Obligations, etc.).
     \item \textbf{Case Law (Deka):} A curated subset of historical Thai Supreme Court rulings relevant to the targeted civil disputes (e.g., breach of contract, torts, and family law).
 \end{itemize}
 
